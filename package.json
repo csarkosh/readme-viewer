@@ -1,0 +1,32 @@
+{
+  "name": "csarko.sh",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.1.3",
+    "@material-ui/icons": "^4.2.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "^3.0.1"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/react-scripts start",
+    "build": "PUBLIC_URL=https://s3-us-west-2.amazonaws.com/csarko.sh ./node_modules/.bin/react-scripts build",
+    "test": "./node_modules/.bin/react-scripts test --env=jsdom",
+    "test:ci": "CI=true ./node_modules/.bin/react-scripts test --env=jsdom",
+    "coverage": "./node_modules/.bin/react-scripts test --env=jsdom --coverage",
+    "eject": "./node_modules/.bin/react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
