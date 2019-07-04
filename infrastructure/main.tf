@@ -10,7 +10,7 @@ provider "aws" {
   region = "us-west-2"
 }
 
-module "us-east-infra" {
+module "certificate" {
   source = "modules/certificate"
 }
 
@@ -122,7 +122,7 @@ resource "aws_cloudfront_distribution" "website-distro" {
   }
 
   "viewer_certificate" {
-    acm_certificate_arn = "${module.us-east-infra.acm_cert_arn}"
+    acm_certificate_arn = "${module.certificate.acm_cert_arn}"
     ssl_support_method = "sni-only"
   }
 }
