@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { AppBar as MUIAppBar, Toolbar, Typography } from '@material-ui/core';
 
@@ -8,7 +8,7 @@ const styles = {
     },
 };
 
-class AppBar extends Component {
+class AppBar extends React.Component {
     render() {
         const { classes } = this.props;
         return (

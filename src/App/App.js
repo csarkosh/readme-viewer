@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {AppBar, Grid, Typography} from '@material-ui/core';
+import React from 'react';
+import { AppBar, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
