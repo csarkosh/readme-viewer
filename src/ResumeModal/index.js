@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal, Paper, withStyles} from "@material-ui/core"
+import {Modal, Paper, Slide, withStyles} from "@material-ui/core"
 import PropTypes from 'prop-types'
 
 
@@ -29,14 +29,16 @@ class ResumeModal extends React.Component {
                 onEscapeKeyDown={onClose}
                 open={open}
             >
-                <Paper className={classes.modalPaper}>
-                    <iframe
-                        title="My Resume"
-                        height="100%"
-                        width="100%"
-                        src="https://s3-us-west-2.amazonaws.com/csarko.sh/CyrusSarkosh.resume.pdf"
-                    />
-                </Paper>
+                <Slide direction="up" in={open}>
+                    <Paper className={classes.modalPaper}>
+                        <iframe
+                            title="My Resume"
+                            height="100%"
+                            width="100%"
+                            src="https://s3-us-west-2.amazonaws.com/csarko.sh/CyrusSarkosh.resume.pdf"
+                        />
+                    </Paper>
+                </Slide>
             </Modal>
         )
     }
