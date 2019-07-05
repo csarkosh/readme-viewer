@@ -9,7 +9,7 @@ const styles = () => ({
         height: 50,
     },
     appBarLogo: {
-        margin: '8px 0 0 8px'
+        margin: '8px 0 0 8px',
     },
     appBarGridContainer: {
         height: '100%',
@@ -25,6 +25,11 @@ const styles = () => ({
         maxWidth: 800,
         padding: 24,
     },
+    iconToolbar: {
+        '@media (max-width: 200px)': {
+            display: 'none',
+        }
+    }
 });
 
 class App extends React.Component {
@@ -45,7 +50,7 @@ class App extends React.Component {
                         <Grid item>
                             <Typography className={classes.appBarLogo} variant="h6">csarko.sh</Typography>
                         </Grid>
-                        <Grid container item justify="flex-end">
+                        <Grid className={classes.iconToolbar} container item justify="flex-end">
                             <Grid item>
                                 <Tooltip title="My Resume">
                                     <IconButton color="inherit" href="#" aria-label="Resume" style={{marginTop: 2}} onClick={this.handleResumeOpen}>
