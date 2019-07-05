@@ -3,6 +3,7 @@ import {AppBar, Grid, IconButton, Modal, Paper, Tooltip, Typography} from '@mate
 import { withStyles } from '@material-ui/core/styles';
 import { FaGithub } from 'react-icons/fa';
 import ResumeIcon from "./ResumeIcon";
+import ResumeModal from '../ResumeModal'
 
 const styles = () => ({
     appBar: {
@@ -18,12 +19,6 @@ const styles = () => ({
         marginTop: 48,
         textAlign: 'center',
         wordBreak: 'break-word'
-    },
-    modalPaper: {
-        height: '65%',
-        margin: '56px auto 0',
-        maxWidth: 800,
-        padding: 24,
     },
     iconToolbar: {
         '@media (max-width: 200px)': {
@@ -69,21 +64,12 @@ class App extends React.Component {
                     </Grid>
                 </AppBar>
                 <Typography className={classes.bodyText} variant="h1">Coming Soon</Typography>
-                <Modal
-                    aria-label="My Resume Modal"
+
+                <ResumeModal
                     onClose={this.handleResumeClose}
-                    onEscapeKeyDown={this.handleResumeClose}
                     open={this.state.resumeOpen}
-                >
-                    <Paper className={classes.modalPaper}>
-                        <iframe
-                            title="My Resume"
-                            height="100%"
-                            width="100%"
-                            src="https://s3-us-west-2.amazonaws.com/csarko.sh/CyrusSarkosh.resume.pdf"
-                        />
-                    </Paper>
-                </Modal>
+                />
+
             </div>
         )
     }
