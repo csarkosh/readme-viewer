@@ -56,6 +56,10 @@ resource "aws_vpc" "main" {
 resource "aws_s3_bucket" "website" {
   bucket = "csarko.sh"
   acl = "public-read"
+  cors_rule {
+    allowed_methods = ["GET"]
+    allowed_origins = ["https://csarko.sh"]
+  }
   policy = <<POLICY
 {
   "Version":"2012-10-17",
@@ -64,10 +68,8 @@ resource "aws_s3_bucket" "website" {
     "Effect":"Allow",
     "Principal": "*",
     "Action":["s3:GetObject"],
-    "Resource":["arn:aws:s3:::csarko.sh/*"
-    ]
-  }
-  ]
+    "Resource":["arn:aws:s3:::csarko.sh/*"]
+  }]
 }
   POLICY
   website {
