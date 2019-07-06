@@ -31,7 +31,8 @@ class ResumeModal extends React.Component {
             >
                 <Slide direction="up" in={open}>
                     <Paper className={classes.modalPaper}>
-                        <iframe
+                        <embed
+                            type="application/pdf"
                             title="My Resume"
                             height="100%"
                             width="100%"
