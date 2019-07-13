@@ -53,12 +53,26 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 }
 
+module "test_csarko_sh" {
+  source = "./modules/s3-website"
+  website_domain = "test2.csarko.sh"
+  hosted_zone_id = "${aws_route53_zone.csarko.zone_id}"
+}
+
+module "lambda" {
+  source = "./modules/lambda"
+  function_name = "inject-headers"
+}
+
 resource "aws_s3_bucket" "website" {
   bucket = "csarko.sh"
   acl = "public-read"
   cors_rule {
     allowed_methods = ["GET"]
-    allowed_origins = ["https://csarko.sh"]
+    allowed_origins = [
+      "https://csarko.sh",
+      "https://*.csarko.sh"
+    ]
   }
   policy = <<POLICY
 {
@@ -92,6 +106,11 @@ resource "aws_cloudfront_distribution" "website-distro" {
     }
     target_origin_id = "S3-csarko.sh"
     viewer_protocol_policy = "allow-all"
+
+    lambda_function_association {
+      event_type = "viewer-response"
+      lambda_arn = "${module.lambda.qualified_arn}"
+    }
   }
 
   default_root_object = "index.html"
@@ -115,6 +134,11 @@ resource "aws_cloudfront_distribution" "website-distro" {
     path_pattern = "*"
     target_origin_id = "S3-csarko.sh"
     viewer_protocol_policy = "redirect-to-https"
+
+    lambda_function_association {
+      event_type = "viewer-response"
+      lambda_arn = "${module.lambda.qualified_arn}"
+    }
   }
 
   "restrictions" {
