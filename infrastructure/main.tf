@@ -39,14 +39,6 @@ resource "aws_vpc" "main" {
 
 
 
-// TODO Delete Lambda@Edge
-module "lambda" {
-  source = "modules/retired-lambda"
-  function_name = "inject-headers"
-}
-
-
-
 // Cdn-serverless hybrid architecture
 module "lambda_server" {
   source = "modules/lambda"
