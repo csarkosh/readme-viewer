@@ -13,8 +13,7 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/react-scripts start",
-    "build": "INLINE_RUNTIME_CHUNK=false PUBLIC_URL=https://s3-us-west-2.amazonaws.com/csarko.sh ./node_modules/.bin/react-scripts build",
-    "build:test": "PUBLIC_URL=http://test2.csarko.sh.s3-website-us-west-2.amazonaws.com/ ./node_modules/.bin/react-scripts build",
+    "build": "INLINE_RUNTIME_CHUNK=false  ./node_modules/.bin/react-scripts build",
     "test": "./node_modules/.bin/react-scripts test --env=jsdom",
     "test:ci": "CI=true ./node_modules/.bin/react-scripts test --env=jsdom",
     "coverage": "./node_modules/.bin/react-scripts test --env=jsdom --coverage",
