@@ -19,5 +19,12 @@ jobs:
           name: tests
           command: npm run test:ci
       - run:
-          name: deploy
+          name: deploy web assets
           command: npm run build && aws s3 sync build s3://csarko.sh --exclude data
+      - run:
+          name: deploy index.html
+          command: |
+            cp build/index.html lambdas/server/
+            zip -j server.zip lambdas/server/*
+            aws s3 mv server.zip s3://csarko.sh-lambdas/
+            aws --region us-east-1 lambda update-function-code --function-name csarko-website --s3-bucket csarko.sh-lambdas --s3-key server.zip
