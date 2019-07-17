@@ -1,7 +1,21 @@
+const crypto = require('crypto')
 const fs = require('fs')
+const cheerio = require('cheerio')
+
+
+const $ = cheerio.load(fs.readFileSync('./index.html').toString('utf-8'))
+const nonce = crypto.randomBytes(16).toString('base64')
+$('script').attr('integrity', `nonce-${nonce}`)
+$('style').attr('itegrity', `nonce-${nonce}`)
+console.log($.html())
 
 exports.handler = (event, context, callback) => {
-    var response = {
+    const $ = cheerio.load(fs.readFileSync('./index.html').toString('utf-8'))
+    const nonce = crypto.randomBytes(16).toString('base64')
+    $('script').attr('integrity', `nonce-${nonce}`)
+    $('style').attr('itegrity', `nonce-${nonce}`)
+
+    callback(null, {
         statusCode: 200,
         headers: {
             'Content-Type': 'text/html; charset=utf-8',
@@ -10,7 +24,6 @@ exports.handler = (event, context, callback) => {
             'X-Frame-Options': 'sameorigin',
             'X-XSS-Protection': '1'
         },
-        body: fs.readFileSync('./index.html').toString('utf-8')
-    }
-    callback(null, response)
+        body: $.html()
+    })
 }
