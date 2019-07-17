@@ -142,7 +142,8 @@ resource "aws_cloudfront_distribution" "protocol_proxy" {
       "cookies" {
         forward = "none"
       }
-      query_string = false
+      headers = ["*"]
+      query_string = true
     }
     max_ttl = 0
     min_ttl = 0
