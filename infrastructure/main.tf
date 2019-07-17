@@ -14,26 +14,10 @@ module "certificate" {
   source = "modules/certificate"
 }
 
-// Hosted zone for dns
+// Network
 resource "aws_route53_zone" "csarko" {
   name = "csarko.sh."
 }
-
-// Apex record
-resource "aws_route53_record" "root" {
-  name = "${aws_route53_zone.csarko.name}"
-  type = "A"
-  zone_id = "${aws_route53_zone.csarko.zone_id}"
-
-  alias {
-    evaluate_target_health = false
-    name = "${aws_cloudfront_distribution.website-distro.domain_name}"
-    zone_id = "${aws_cloudfront_distribution.website-distro.hosted_zone_id}"
-  }
-}
-
-
-// MX records
 resource "aws_route53_record" "mx" {
   name = ""
   records = [
@@ -53,17 +37,47 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 }
 
-module "test_csarko_sh" {
-  source = "./modules/s3-website"
-  website_domain = "test2.csarko.sh"
-  hosted_zone_id = "${aws_route53_zone.csarko.zone_id}"
-}
 
+
+// TODO Delete Lambda@Edge
 module "lambda" {
-  source = "./modules/lambda"
+  source = "modules/retired-lambda"
   function_name = "inject-headers"
 }
 
+
+
+// Cdn-serverless hybrid architecture
+module "lambda_server" {
+  source = "modules/lambda"
+  lambda_key = "server.zip"
+  name = "csarko-website"
+  lambda_bucket = "csarko.sh-lambdas"
+}
+module "lambda_site" {
+  source = "modules/cloudfront-gateway-s3"
+  name = "csarko-website"
+  domain_name = "csarko.sh"
+  domain_cert_arn = "${module.certificate.acm_cert_arn}"
+  lambda_invoke_arn = "${module.lambda_server.invoke_arn}"
+  lambda_func_name = "${module.lambda_server.func_name}"
+  asset_domain_name = "${aws_s3_bucket.website.bucket_regional_domain_name}"
+  asset_origin_id = "${aws_s3_bucket.website.id}"
+}
+resource "aws_route53_record" "serverless" {
+  name = "${module.lambda_site.domain_name}"
+  type = "A"
+  zone_id = "${aws_route53_zone.csarko.zone_id}"
+  alias {
+    evaluate_target_health = false
+    name = "${module.lambda_site.regional_domain_name}"
+    zone_id = "${module.lambda_site.regional_zone_id}"
+  }
+}
+
+
+
+// Web asset storage
 resource "aws_s3_bucket" "website" {
   bucket = "csarko.sh"
   acl = "public-read"
@@ -89,66 +103,5 @@ resource "aws_s3_bucket" "website" {
   website {
     index_document = "index.html"
     error_document = "index.html"
-  }
-}
-
-resource "aws_cloudfront_distribution" "website-distro" {
-  aliases = ["csarko.sh"]
-
-  "default_cache_behavior" {
-    allowed_methods = ["GET", "HEAD"]
-    cached_methods = ["GET", "HEAD"]
-    "forwarded_values" {
-      "cookies" {
-        forward = "none"
-      }
-      query_string = false
-    }
-    target_origin_id = "S3-csarko.sh"
-    viewer_protocol_policy = "allow-all"
-
-    lambda_function_association {
-      event_type = "viewer-response"
-      lambda_arn = "${module.lambda.qualified_arn}"
-    }
-  }
-
-  default_root_object = "index.html"
-  enabled = true
-  is_ipv6_enabled = true
-
-  "origin" {
-    domain_name = "${aws_s3_bucket.website.bucket_regional_domain_name}"
-    origin_id = "S3-csarko.sh"
-  }
-
-  "ordered_cache_behavior" {
-    allowed_methods = ["GET", "HEAD"]
-    cached_methods = ["GET", "HEAD"]
-    "forwarded_values" {
-      cookies {
-        forward = "none"
-      }
-      query_string = false
-    }
-    path_pattern = "*"
-    target_origin_id = "S3-csarko.sh"
-    viewer_protocol_policy = "redirect-to-https"
-
-    lambda_function_association {
-      event_type = "viewer-response"
-      lambda_arn = "${module.lambda.qualified_arn}"
-    }
-  }
-
-  "restrictions" {
-    "geo_restriction" {
-      restriction_type = "none"
-    }
-  }
-
-  "viewer_certificate" {
-    acm_certificate_arn = "${module.certificate.acm_cert_arn}"
-    ssl_support_method = "sni-only"
   }
 }
