@@ -25,7 +25,8 @@ jobs:
           name: deploy index.html
           command: |
             cp build/index.html lambdas/server/
-            cd lambdas/server/ ; npm ci ; cd ../../
-            zip -j server.zip lambdas/server/*
+            cd lambdas/server/
+            npm install
+            zip -r server.zip lambdas/server/*
             aws s3 mv server.zip s3://csarko.sh-lambdas/
             aws --region us-east-1 lambda update-function-code --function-name csarko-website --s3-bucket csarko.sh-lambdas --s3-key server.zip
