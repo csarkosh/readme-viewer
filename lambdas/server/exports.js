@@ -6,9 +6,9 @@ const cheerio = require('cheerio')
 exports.handler = (event, context, callback) => {
     const $ = cheerio.load(fs.readFileSync('./index.html').toString('utf-8'))
     const nonce = crypto.randomBytes(16).toString('base64')
-    $('script').attr('nonce', `nonce-${nonce}`)
-    $('style').attr('nonce', `nonce-${nonce}`)
-    $('meta[property="csp-nonce"]').attr('content', `nonce-${nonce}`)
+    $('script').attr('nonce', nonce)
+    $('style').attr('nonce', nonce)
+    $('meta[property="csp-nonce"]').attr('content', nonce)
 
     callback(null, {
         statusCode: 200,
