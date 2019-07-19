@@ -13,6 +13,7 @@ exports.handler = (event, context, callback) => {
     callback(null, {
         statusCode: 200,
         headers: {
+            'Content-Security-Policy': `default-src 'self'; script-src 'nonce-${nonce}'; style-src 'nonce-${nonce}'`,
             'Content-Type': 'text/html; charset=utf-8',
             'Strict-Transport-Security': 'max-age=15768001; includeSubDomains',
             'X-Content-Type-Options': 'nosniff',
