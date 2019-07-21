@@ -13,7 +13,7 @@ exports.handler = (event, context, callback) => {
     callback(null, {
         statusCode: 200,
         headers: {
-            //'Content-Security-Policy': `default-src 'self' csarko.sh; script-src 'nonce-${nonce} *.google-analytics.com'; style-src 'nonce-${nonce}' *.googleapis.com`,
+            'Content-Security-Policy': `default-src 'self'; script-src 'self' 'nonce-${nonce}' *.google-analytics.com *.googletagmanager.com; style-src 'self' 'nonce-${nonce}' *.googleapis.com; font-src 'self' *.gstatic.com`,
             'Content-Type': 'text/html; charset=utf-8',
             'Strict-Transport-Security': 'max-age=15768001; includeSubDomains',
             'X-Content-Type-Options': 'nosniff',
