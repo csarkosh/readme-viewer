@@ -15,7 +15,7 @@ exports.handler = (event, context, callback) => {
         headers: {
             'Content-Security-Policy': `default-src 'none'; script-src 'self' 'nonce-${nonce}' *.google-analytics.com *.googletagmanager.com; style-src 'self' 'nonce-${nonce}' *.googleapis.com; font-src 'self' *.gstatic.com; img-src 'self' *.google-analytics.com; form-action 'self'; base-uri 'self'; frame-ancestors 'self'`,
             'Content-Type': 'text/html; charset=utf-8',
-            'Strict-Transport-Security': 'max-age=31536001; includeSubDomains; preload',
+            'Strict-Transport-Security': 'max-age=31536001; includeSubDomains',
             'X-Content-Type-Options': 'nosniff',
             'X-Frame-Options': 'sameorigin',
             'X-XSS-Protection': '1'
