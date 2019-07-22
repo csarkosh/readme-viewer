@@ -26,7 +26,16 @@ jobs:
           command: |
             cp build/index.html lambdas/server/
             cd lambdas/server/
-            npm install
+            npm ci
             zip -r server.zip *
             aws s3 mv server.zip s3://csarko.sh-lambdas/
             aws --region us-east-1 lambda update-function-code --function-name csarko-website --s3-bucket csarko.sh-lambdas --s3-key server.zip
+            cd ../..
+      - run:
+          name: deploy "cache-gh-data" lambda
+          command: |
+            cd lambdas/cache-gh-data
+            npm ci
+            zip -r cache-gh-data.zip *
+            aws s3 mv cache-gh-data.zip s3://csarko.sh-lambdas/
+            cd ../..

@@ -1,0 +1,9 @@
+{
+  "name": "cache-gh-data",
+  "version": "0.0.1",
+  "dependencies": {
+    "aws-sdk": "^2.496.0",
+    "axios": "^0.19.0",
+    "typy": "^3.1.0"
+  }
+}
