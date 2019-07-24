@@ -38,4 +38,5 @@ jobs:
             npm ci
             zip -r cache-gh-data.zip *
             aws s3 mv cache-gh-data.zip s3://csarko.sh-lambdas/
+            aws --region us-east-1 lambda update-function-code --function-name cache-gh-data --s3-bucket csarko.sh-lambdas --s3-key cache-gh-data.zip
             cd ../..
