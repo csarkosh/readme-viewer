@@ -51,5 +51,4 @@ exports.handler = async () => {
             })
         }
     }))
-    .catch(console.error)
 }
