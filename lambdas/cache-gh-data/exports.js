@@ -21,9 +21,9 @@ exports.handler = async () => {
                         edges {
                             node {
                                 description
-                                id
                                 isFork
                                 name
+                                nameWithOwner
                                 url
                                 parent {
                                     nameWithOwner
