@@ -4,8 +4,9 @@ const cheerio = require('cheerio')
 
 
 const s3 = new aws.S3()
-const uploadToS3 = (Bucket, Key, Body) => new Promise((res, rej) => {
-    s3.upload({ Body, Bucket, Key }, err => err !== null ? rej(err) : res())
+const uploadToS3 = (Bucket, Key, Body, opts = {}) => new Promise((res, rej) => {
+    const { ContentType } = opts
+    s3.upload({ Body, Bucket, Key, ContentType }, err => err !== null ? rej(err) : res())
 })
 
 
@@ -58,7 +59,7 @@ exports.handler = async () => {
         }
     // Store GH data and READMEs in S3
     })).then(({ repos, readmes }) => Promise.all([
-        uploadToS3('csarko.sh', 'data/repos.json', JSON.stringify(repos)),
+        uploadToS3('csarko.sh', 'data/repos.json', JSON.stringify(repos), { ContentType: 'text/html' }),
         ...readmes.map(({ name, readme }) => uploadToS3('csarko.sh', `docs/readmes/${name}.html`, readme))
     ]))
 }
