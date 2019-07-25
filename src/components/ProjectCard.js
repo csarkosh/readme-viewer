@@ -60,6 +60,7 @@ const styles = () => ({
     },
     buttonWrapper: {
         border: 'none',
+        textAlign: 'left',
         padding: 0,
     }
 })
