@@ -8,7 +8,7 @@ const styles = () => ({
         color: '#586069',
         width: 500,
         '@media (max-width: 550px)': {
-            width: '85vw'
+            width: '91vw'
         }
     },
     expansionPanelSummaryRoot: {

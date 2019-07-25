@@ -32,7 +32,7 @@ const styles = () => ({
         marginTop: 8
     },
     forkMeBanner: {
-        position: 'absolute',
+        position: 'fixed',
         zIndex: 2140,
     },
 });
