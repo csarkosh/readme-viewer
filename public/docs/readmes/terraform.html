@@ -1,0 +1,127 @@
+
+    <article class="markdown-body entry-content p-3 p-md-6" itemprop="text"><h1><a id="user-content-terraform" class="anchor" aria-hidden="true" href="#terraform"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>Terraform</h1>
+<ul>
+<li>Website: <a href="https://www.terraform.io" rel="nofollow">https://www.terraform.io</a></li>
+<li><a href="https://gitter.im/hashicorp-terraform/Lobby" rel="nofollow"><img src="https://camo.githubusercontent.com/9e3455dbcc42bd5bd17f6f577a15b8ac60d57310/68747470733a2f2f6261646765732e6769747465722e696d2f6861736869636f72702d7465727261666f726d2f4c6f6262792e706e67" alt="Gitter chat" data-canonical-src="https://badges.gitter.im/hashicorp-terraform/Lobby.png" style="max-width:100%;"></a></li>
+<li>Mailing list: <a href="http://groups.google.com/group/terraform-tool" rel="nofollow">Google Groups</a></li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer" href="https://camo.githubusercontent.com/2f78124a1f0f4905d95b9e85b1fa00afddcf3e29/68747470733a2f2f63646e2e7261776769742e636f6d2f6861736869636f72702f7465727261666f726d2d776562736974652f6d61737465722f636f6e74656e742f736f757263652f6173736574732f696d616765732f6c6f676f2d6861736869636f72702e737667"><img alt="Terraform" src="https://camo.githubusercontent.com/2f78124a1f0f4905d95b9e85b1fa00afddcf3e29/68747470733a2f2f63646e2e7261776769742e636f6d2f6861736869636f72702f7465727261666f726d2d776562736974652f6d61737465722f636f6e74656e742f736f757263652f6173736574732f696d616765732f6c6f676f2d6861736869636f72702e737667" width="600px" data-canonical-src="https://cdn.rawgit.com/hashicorp/terraform-website/master/content/source/assets/images/logo-hashicorp.svg" style="max-width:100%;"></a></p>
+<p>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</p>
+<p>The key features of Terraform are:</p>
+<ul>
+<li>
+<p><strong>Infrastructure as Code</strong>: Infrastructure is described using a high-level configuration syntax. This allows a blueprint of your datacenter to be versioned and treated as you would any other code. Additionally, infrastructure can be shared and re-used.</p>
+</li>
+<li>
+<p><strong>Execution Plans</strong>: Terraform has a &quot;planning&quot; step where it generates an <em>execution plan</em>. The execution plan shows what Terraform will do when you call apply. This lets you avoid any surprises when Terraform manipulates infrastructure.</p>
+</li>
+<li>
+<p><strong>Resource Graph</strong>: Terraform builds a graph of all your resources, and parallelizes the creation and modification of any non-dependent resources. Because of this, Terraform builds infrastructure as efficiently as possible, and operators get insight into dependencies in their infrastructure.</p>
+</li>
+<li>
+<p><strong>Change Automation</strong>: Complex changesets can be applied to your infrastructure with minimal human interaction. With the previously mentioned execution plan and resource graph, you know exactly what Terraform will change and in what order, avoiding many possible human errors.</p>
+</li>
+</ul>
+<p>For more information, see the <a href="http://www.terraform.io/intro" rel="nofollow">introduction section</a> of the Terraform website.</p>
+<h2><a id="user-content-getting-started--documentation" class="anchor" aria-hidden="true" href="#getting-started--documentation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>Getting Started &amp; Documentation</h2>
+<p>If you&apos;re new to Terraform and want to get started creating infrastructure, please checkout our <a href="https://www.terraform.io/intro/getting-started/install.html" rel="nofollow">Getting Started</a> guide, available on the <a href="http://www.terraform.io" rel="nofollow">Terraform website</a>.</p>
+<p>All documentation is available on the <a href="http://www.terraform.io" rel="nofollow">Terraform website</a>:</p>
+<ul>
+<li><a href="https://www.terraform.io/intro/index.html" rel="nofollow">Intro</a></li>
+<li><a href="https://www.terraform.io/docs/index.html" rel="nofollow">Docs</a></li>
+</ul>
+<h2><a id="user-content-developing-terraform" class="anchor" aria-hidden="true" href="#developing-terraform"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>Developing Terraform</h2>
+<p>If you wish to work on Terraform itself or any of its built-in providers, you&apos;ll first need <a href="http://www.golang.org" rel="nofollow">Go</a> installed on your machine (version 1.11+ is <em>required</em>). Alternatively, you can use the Vagrantfile in the root of this repo to stand up a virtual machine with the appropriate dev tooling already set up for you.</p>
+<p>This repository contains only Terraform core, which includes the command line interface and the main graph engine. Providers are implemented as plugins that each have their own repository in <a href="https://github.com/terraform-providers">the <code>terraform-providers</code> organization</a> on GitHub. Instructions for developing each provider are in the associated README file. For more information, see <a href="https://www.terraform.io/docs/plugins/provider.html" rel="nofollow">the provider development overview</a>.</p>
+<p>For local development of Terraform core, first make sure Go is properly installed and that a
+<a href="http://golang.org/doc/code.html#GOPATH" rel="nofollow">GOPATH</a> has been set. You will also need to add <code>$GOPATH/bin</code> to your <code>$PATH</code>.</p>
+<p>Next, using <a href="https://git-scm.com/" rel="nofollow">Git</a>, clone this repository into <code>$GOPATH/src/github.com/hashicorp/terraform</code>.</p>
+<p>You&apos;ll need to run <code>make tools</code> to install some required tools, then <code>make</code>.  This will compile the code and then run the tests. If this exits with exit status 0, then everything is working!
+You only need to run <code>make tools</code> once (or when the tools change).</p>
+<div class="highlight highlight-source-shell"><pre>$ <span class="pl-c1">cd</span> <span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-smi">$GOPATH</span>/src/github.com/hashicorp/terraform<span class="pl-pds">&quot;</span></span>
+$ make tools
+$ make</pre></div>
+<p>To compile a development version of Terraform and the built-in plugins, run <code>make dev</code>. This will build everything using <a href="https://github.com/mitchellh/gox">gox</a> and put Terraform binaries in the <code>bin</code> and <code>$GOPATH/bin</code> folders:</p>
+<div class="highlight highlight-source-shell"><pre>$ make dev
+...
+$ bin/terraform
+...</pre></div>
+<p>If you&apos;re developing a specific package, you can run tests for just that package by specifying the <code>TEST</code> variable. For example below, only<code>terraform</code> package tests will be run.</p>
+<div class="highlight highlight-source-shell"><pre>$ make <span class="pl-c1">test</span> TEST=./terraform
+...</pre></div>
+<p>If you&apos;re working on a specific provider which has not been separated into an individual repository and only wish to rebuild that provider, you can use the <code>plugin-dev</code> target. For example, to build only the Test provider:</p>
+<div class="highlight highlight-source-shell"><pre>$ make plugin-dev PLUGIN=provider-test</pre></div>
+<h3><a id="user-content-dependencies" class="anchor" aria-hidden="true" href="#dependencies"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>Dependencies</h3>
+<p>Terraform uses Go Modules for dependency management, but for the moment is
+continuing to use Go 1.6-style vendoring for compatibility with tools that
+have not yet been updated for full Go Modules support.</p>
+<p>If you&apos;re developing Terraform, there are a few tasks you might need to perform.</p>
+<h4><a id="user-content-adding-a-dependency" class="anchor" aria-hidden="true" href="#adding-a-dependency"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>Adding a dependency</h4>
+<p>If you&apos;re adding a dependency, you&apos;ll need to vendor it in the same Pull Request as the code that depends on it. You should do this in a separate commit from your code, as makes PR review easier and Git history simpler to read in the future.</p>
+<p>To add a dependency:</p>
+<p>Assuming your work is on a branch called <code>my-feature-branch</code>, the steps look like this:</p>
+<ol>
+<li>
+<p>Add an <code>import</code> statement to a suitable package in the Terraform code.</p>
+</li>
+<li>
+<p>Run <code>go mod vendor</code> to download the latest version of the module containing
+the imported package into the <code>vendor/</code> directory, and update the <code>go.mod</code>
+and <code>go.sum</code> files.</p>
+</li>
+<li>
+<p>Review the changes in git and commit them.</p>
+</li>
+</ol>
+<h4><a id="user-content-updating-a-dependency" class="anchor" aria-hidden="true" href="#updating-a-dependency"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>Updating a dependency</h4>
+<p>To update a dependency:</p>
+<ol>
+<li>
+<p>Run <code>go get -u module-path@version-number</code>, such as <code>go get -u github.com/hashicorp/hcl@2.0.0</code></p>
+</li>
+<li>
+<p>Run <code>go mod vendor</code> to update the vendored copy in the <code>vendor/</code> directory.</p>
+</li>
+<li>
+<p>Review the changes in git and commit them.</p>
+</li>
+</ol>
+<h3><a id="user-content-acceptance-tests" class="anchor" aria-hidden="true" href="#acceptance-tests"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>Acceptance Tests</h3>
+<p>Terraform has a comprehensive <a href="http://en.wikipedia.org/wiki/Acceptance_testing" rel="nofollow">acceptance
+test</a> suite covering the
+built-in providers. Our <a href="https://github.com/hashicorp/terraform/blob/master/.github/CONTRIBUTING.md">Contributing Guide</a> includes details about how and when to write and run acceptance tests in order to help contributions get accepted quickly.</p>
+<h3><a id="user-content-cross-compilation-and-building-for-distribution" class="anchor" aria-hidden="true" href="#cross-compilation-and-building-for-distribution"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>Cross Compilation and Building for Distribution</h3>
+<p>If you wish to cross-compile Terraform for another architecture, you can set the <code>XC_OS</code> and <code>XC_ARCH</code> environment variables to values representing the target operating system and architecture before calling <code>make</code>. The output is placed in the <code>pkg</code> subdirectory tree both expanded in a directory representing the OS/architecture combination and as a ZIP archive.</p>
+<p>For example, to compile 64-bit Linux binaries on Mac OS X, you can run:</p>
+<div class="highlight highlight-source-shell"><pre>$ XC_OS=linux XC_ARCH=amd64 make bin
+...
+$ file pkg/linux_amd64/terraform
+terraform: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, not stripped</pre></div>
+<p><code>XC_OS</code> and <code>XC_ARCH</code> can be space separated lists representing different combinations of operating system and architecture. For example, to compile for both Linux and Mac OS X, targeting both 32- and 64-bit architectures, you can run:</p>
+<div class="highlight highlight-source-shell"><pre>$ XC_OS=<span class="pl-s"><span class="pl-pds">&quot;</span>linux darwin<span class="pl-pds">&quot;</span></span> XC_ARCH=<span class="pl-s"><span class="pl-pds">&quot;</span>386 amd64<span class="pl-pds">&quot;</span></span> make bin
+...
+$ tree ./pkg/ -P <span class="pl-s"><span class="pl-pds">&quot;</span>terraform|*.zip<span class="pl-pds">&quot;</span></span>
+./pkg/
+&#x251C;&#x2500;&#x2500; darwin_386
+&#x2502;&#xA0;&#xA0; &#x2514;&#x2500;&#x2500; terraform
+&#x251C;&#x2500;&#x2500; darwin_386.zip
+&#x251C;&#x2500;&#x2500; darwin_amd64
+&#x2502;&#xA0;&#xA0; &#x2514;&#x2500;&#x2500; terraform
+&#x251C;&#x2500;&#x2500; darwin_amd64.zip
+&#x251C;&#x2500;&#x2500; linux_386
+&#x2502;&#xA0;&#xA0; &#x2514;&#x2500;&#x2500; terraform
+&#x251C;&#x2500;&#x2500; linux_386.zip
+&#x251C;&#x2500;&#x2500; linux_amd64
+&#x2502;&#xA0;&#xA0; &#x2514;&#x2500;&#x2500; terraform
+&#x2514;&#x2500;&#x2500; linux_amd64.zip
+
+4 directories, 8 files</pre></div>
+<p><em>Note: Cross-compilation uses <a href="https://github.com/mitchellh/gox">gox</a>, which requires toolchains to be built with versions of Go prior to 1.5. In order to successfully cross-compile with older versions of Go, you will need to run <code>gox -build-toolchain</code> before running the commands detailed above.</em></p>
+<h4><a id="user-content-docker" class="anchor" aria-hidden="true" href="#docker"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>Docker</h4>
+<p>When using docker you don&apos;t need to have any of the Go development tools installed and you can clone terraform to any location on disk (doesn&apos;t have to be in your $GOPATH).  This is useful for users who want to build <code>master</code> or a specific branch for testing without setting up a proper Go environment.</p>
+<p>For example, run the following command to build terraform in a linux-based container for macOS.</p>
+<div class="highlight highlight-source-shell"><pre>docker run --rm -v <span class="pl-s"><span class="pl-pds">$(</span>pwd<span class="pl-pds">)</span></span>:/go/src/github.com/hashicorp/terraform -w /go/src/github.com/hashicorp/terraform -e XC_OS=darwin -e XC_ARCH=amd64 golang:latest bash -c <span class="pl-s"><span class="pl-pds">&quot;</span>apt-get update &amp;&amp; apt-get install -y zip &amp;&amp; make bin<span class="pl-pds">&quot;</span></span></pre></div>
+<h2><a id="user-content-license" class="anchor" aria-hidden="true" href="#license"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"/></svg></a>License</h2>
+<p><a href="https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhashicorp%2Fterraform?ref=badge_large" rel="nofollow"><img src="https://camo.githubusercontent.com/c43b80c084dc10a72d6d966a45af0f8a991b94b9/68747470733a2f2f6170702e666f7373612e696f2f6170692f70726f6a656374732f67697425324268747470732533412532462532466769746875622e636f6d2532466861736869636f72702532467465727261666f726d2e7376673f747970653d6c61726765" alt="FOSSA Status" data-canonical-src="https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fhashicorp%2Fterraform.svg?type=large" style="max-width:100%;"></a></p>
+</article>
+  

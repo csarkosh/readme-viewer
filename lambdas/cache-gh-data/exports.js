@@ -1,8 +1,16 @@
 const aws = require('aws-sdk')
 const axios = require('axios')
+const cheerio = require('cheerio')
+
+
+const s3 = new aws.S3()
+const uploadToS3 = (Bucket, Key, Body) => new Promise((res, rej) => {
+    s3.upload({ Body, Bucket, Key }, err => err !== null ? rej(err) : res())
+})
 
 
 exports.handler = async () => {
+    // Get GH read-only token
     await new Promise((resolve, reject) => {
         (new aws.SecretsManager({ region: 'us-east-1' }))
             .getSecretValue({ SecretId: 'gh/read_token' }, (err, data) => {
@@ -12,6 +20,7 @@ exports.handler = async () => {
                     resolve(JSON.parse(data.SecretString).gh_read_token)
                 }
             })
+    // Query data on my repos
     }).then(token => axios.post(
         'https://api.github.com/graphql',
         {
@@ -36,19 +45,20 @@ exports.handler = async () => {
             }`
         },
         { headers: { Authorization: `bearer ${token}`}
-    })).then(({ data }) => new Promise((resolve, reject) => {
+    // Download my repos' READMEs
+    })).then(({ data }) => new Promise((resolve) => {
         if (data && data.data && data.data.user && data.data.user.repositories && data.data.user.repositories.edges && data.data.user.repositories.edges.length) {
-            (new aws.S3()).upload({
-                Body: JSON.stringify(data.data.user.repositories.edges.map(({ node }) => node)),
-                Bucket: 'csarko.sh',
-                Key: 'data/repos.json'
-            }, err => {
-                if (err !== null) {
-                    reject(err)
-                } else {
-                    resolve()
-                }
-            })
+            const repos = data.data.user.repositories.edges.map(({ node }) => node)
+            Promise.all(repos.map(({ name, url }) => new Promise(res => {
+                axios.get(`${url}/blob/master/README.md`).then(({ data }) => {
+                    const $ = cheerio.load(data)
+                    res({ name, readme: $('#readme').html() })
+                })
+            }))).then(readmes => resolve({ repos, readmes }))
         }
-    }))
+    // Store GH data and READMEs in S3
+    })).then(({ repos, readmes }) => Promise.all([
+        uploadToS3('csarko.sh', 'data/repos.json', JSON.stringify(repos)),
+        ...readmes.map(({ name, readme }) => uploadToS3('csarko.sh', `docs/readmes/${name}.html`, readme))
+    ]))
 }
