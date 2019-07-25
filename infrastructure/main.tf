@@ -69,6 +69,17 @@ resource "aws_route53_record" "serverless" {
 
 
 
+// Cache GitHub data cron
+module "gh_cron" {
+  source = "modules/scheduled-lambda"
+  s3_bucket = "csarko.sh-lambdas"
+  s3_key = "cache-gh-data.zip"
+  schedule_expression = "rate(1 hour)"
+  name = "cache-gh-data"
+}
+
+
+
 // Web asset storage
 resource "aws_s3_bucket" "website" {
   bucket = "csarko.sh"
