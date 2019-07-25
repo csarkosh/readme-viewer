@@ -2,8 +2,10 @@ import React from 'react';
 import {AppBar, Grid, IconButton, Tooltip, Typography} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { FaGithub } from 'react-icons/fa';
-import ResumeIcon from "./ResumeIcon";
-import ResumeModal from '../ResumeModal'
+import ResumeIcon from "./components/ResumeIcon";
+import ResumeModal from './components/ResumeModal'
+import ProjectCard from "./components/ProjectCard";
+import axios from 'axios'
 
 const styles = () => ({
     appBar: {
@@ -16,20 +18,32 @@ const styles = () => ({
         height: '100%',
     },
     bodyText: {
-        marginTop: 48,
+        margin: '48px auto 0',
         textAlign: 'center',
+        width: '75vw',
         wordBreak: 'break-word'
     },
     iconToolbar: {
         '@media (max-width: 200px)': {
             display: 'none',
         }
+    },
+    reposContainer: {
+        marginTop: 8
     }
 });
 
 class App extends React.Component {
     state = {
-        resumeOpen: false
+        hasReposError: false,
+        resumeOpen: false,
+        repos: null,
+    }
+
+    componentDidMount() {
+        axios.get('/data/repos.json')
+            .then(({ data }) => this.setState({ repos: data.sort(a => a.isFork ? 1 : -1) }))
+            .catch(() => this.setState({ hasReposError: true }))
     }
 
     handleResumeClose = () => this.setState({ resumeOpen: false })
@@ -40,10 +54,15 @@ class App extends React.Component {
         return (
             <div>
                 <AppBar className={classes.appBar} position="sticky">
-                    <Grid className={classes.appBarGridContainer} container justify="space-between" alignContent="center"
-                          wrap="nowrap">
+                    <Grid
+                        className={classes.appBarGridContainer}
+                        container
+                        justify="space-between"
+                        alignContent="center"
+                        wrap="nowrap"
+                    >
                         <Grid item>
-                            <Typography className={classes.appBarLogo} variant="h6">csarko.sh</Typography>
+                            <Typography className={classes.appBarLogo} variant="h5">csarko.sh</Typography>
                         </Grid>
                         <Grid className={classes.iconToolbar} container item justify="flex-end">
                             <Grid item>
@@ -63,7 +82,24 @@ class App extends React.Component {
                         </Grid>
                     </Grid>
                 </AppBar>
-                <Typography className={classes.bodyText} variant="h1">Coming Soon</Typography>
+
+                { this.state.hasReposError &&
+                    <Typography className={classes.bodyText} variant="h3">Oops... An error has occurred fetching my repo data</Typography>
+                }
+
+                { this.state.repos &&
+                    <Grid className={classes.reposContainer} container justify="center" spacing={2}>
+                        {this.state.repos.map(({ description, isFork, nameWithOwner, parent }) => (
+                            <Grid key={nameWithOwner} item>
+                                <ProjectCard
+                                    description={description}
+                                    repoName={nameWithOwner}
+                                    parent={!parent ? undefined : { name: parent.nameWithOwner, url: parent.url }}
+                                />
+                            </Grid>
+                        ))}
+                    </Grid>
+                }
 
                 <ResumeModal
                     onClose={this.handleResumeClose}
