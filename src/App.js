@@ -89,11 +89,12 @@ class App extends React.Component {
 
                 { this.state.repos &&
                     <Grid className={classes.reposContainer} container justify="center" spacing={2}>
-                        {this.state.repos.map(({ description, isFork, nameWithOwner, parent }) => (
-                            <Grid key={nameWithOwner} item>
+                        {this.state.repos.map(({ description, name, parent, url }) => (
+                            <Grid key={name} item>
                                 <ProjectCard
                                     description={description}
-                                    repoName={nameWithOwner}
+                                    repoName={name}
+                                    repoUrl={url}
                                     parent={!parent ? undefined : { name: parent.nameWithOwner, url: parent.url }}
                                 />
                             </Grid>
