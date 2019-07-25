@@ -33,7 +33,7 @@ const styles = () => ({
     },
     forkMeBanner: {
         position: 'fixed',
-        zIndex: 2140,
+        zIndex: 1250,
     },
 });
 
