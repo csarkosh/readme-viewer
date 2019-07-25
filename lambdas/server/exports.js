@@ -14,7 +14,7 @@ exports.handler = (event, context, callback) => {
         statusCode: 200,
         headers: {
             'Cache-Control': 'no-cache, no-store, must-revalidate',
-            'Content-Security-Policy': `default-src 'none'; script-src 'self' 'nonce-${nonce}' *.google-analytics.com *.googletagmanager.com; style-src 'self' 'nonce-${nonce}' *.googleapis.com; font-src 'self' *.gstatic.com; img-src 'self' *.google-analytics.com; form-action 'self'; base-uri 'self'; frame-ancestors 'self'; manifest-src 'self'; connect-src 'self'; object-src 'self'`,
+            'Content-Security-Policy': `default-src 'none'; script-src 'self' 'nonce-${nonce}' *.google-analytics.com *.googletagmanager.com; style-src 'self' 'nonce-${nonce}' *.googleapis.com; font-src 'self' *.gstatic.com; img-src 'self' *.google-analytics.com *.googletagmanager.com github.blog; form-action 'self'; base-uri 'self'; frame-ancestors 'self'; manifest-src 'self'; connect-src 'self'; object-src 'self'`,
             'Content-Type': 'text/html; charset=utf-8',
             'Expires': '0',
             'Pragma': 'no-cache',
