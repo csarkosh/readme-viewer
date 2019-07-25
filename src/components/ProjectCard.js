@@ -59,6 +59,7 @@ const styles = () => ({
         }
     },
     buttonWrapper: {
+        backgroundColor: 'transparent',
         border: 'none',
         textAlign: 'left',
         padding: 0,
