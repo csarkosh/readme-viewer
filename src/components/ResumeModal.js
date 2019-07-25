@@ -5,9 +5,10 @@ import PropTypes from 'prop-types'
 
 const styles = () => ({
     modalPaper: {
-        height: '65%',
-        margin: '56px auto 0',
+        height: '85vh',
+        margin: '24px auto 0',
         maxWidth: 800,
+        width: '93vw',
         padding: 24,
     },
 })
