@@ -36,7 +36,7 @@ class ResumeModal extends React.Component {
                             title="My Resume"
                             height="100%"
                             width="100%"
-                            src="https://s3-us-west-2.amazonaws.com/csarko.sh/CyrusSarkosh.resume.pdf"
+                            src="/docs/CyrusSarkosh.resume.pdf"
                         />
                     </Paper>
                 </Slide>

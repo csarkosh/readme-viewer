@@ -27,7 +27,7 @@ jobs:
             cp build/index.html lambdas/server/
             cd lambdas/server/
             npm ci
-            zip -r server.zip * --exclude data
+            zip -r server.zip * --exclude data --exclude docs
             aws s3 mv server.zip s3://csarko.sh-lambdas/
             aws --region us-east-1 lambda update-function-code --function-name csarko-website --s3-bucket csarko.sh-lambdas --s3-key server.zip
             cd ../..
