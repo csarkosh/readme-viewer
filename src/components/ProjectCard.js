@@ -4,6 +4,7 @@ import {ExpansionPanel, ExpansionPanelSummary, Grid, Typography, withStyles} fro
 
 const styles = () => ({
     expansionPanelRoot: {
+        borderRadius: '8px !important',
         color: '#586069',
         width: 500,
         '@media (max-width: 550px)': {
@@ -12,6 +13,7 @@ const styles = () => ({
     },
     expansionPanelSummaryRoot: {
         alignItems: 'flex-start',
+        borderRadius: 8,
     },
     forkedFrom: {
         color: '#586069',

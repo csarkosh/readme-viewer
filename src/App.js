@@ -30,7 +30,11 @@ const styles = () => ({
     },
     reposContainer: {
         marginTop: 8
-    }
+    },
+    forkMeBanner: {
+        position: 'absolute',
+        zIndex: 2140,
+    },
 });
 
 class App extends React.Component {
@@ -53,6 +57,14 @@ class App extends React.Component {
         const { classes } = this.props
         return (
             <div>
+                <a href="https://github.com/csarkosh/csarko.sh">
+                    <img width="149" height="149"
+                        src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149"
+                        className={`attachment-full size-full ${classes.forkMeBanner}`}
+                        alt="Fork me on GitHub"
+                        data-recalc-dims="1"
+                    />
+                </a>
                 <AppBar className={classes.appBar} position="sticky">
                     <Grid
                         className={classes.appBarGridContainer}
