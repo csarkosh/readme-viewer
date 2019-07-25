@@ -59,7 +59,7 @@ exports.handler = async () => {
         }
     // Store GH data and READMEs in S3
     })).then(({ repos, readmes }) => Promise.all([
-        uploadToS3('csarko.sh', 'data/repos.json', JSON.stringify(repos), { ContentType: 'text/html' }),
-        ...readmes.map(({ name, readme }) => uploadToS3('csarko.sh', `docs/readmes/${name}.html`, readme))
+        uploadToS3('csarko.sh', 'data/repos.json', JSON.stringify(repos)),
+        ...readmes.map(({ name, readme }) => uploadToS3('csarko.sh', `docs/readmes/${name}.html`, readme, { ContentType: 'text/html' }))
     ]))
 }
