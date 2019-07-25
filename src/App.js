@@ -42,16 +42,19 @@ class App extends React.Component {
         hasReposError: false,
         resumeOpen: false,
         repos: null,
+        selectedRepo: null,
     }
 
     componentDidMount() {
         axios.get('/data/repos.json')
-            .then(({ data }) => this.setState({ repos: data.sort(a => a.isFork ? 1 : -1) }))
+            .then(({ data }) => this.setState({ repos: data.sort((a, b) =>b.isFork ? -1 : 1) }))
             .catch(() => this.setState({ hasReposError: true }))
     }
 
     handleResumeClose = () => this.setState({ resumeOpen: false })
     handleResumeOpen = () => this.setState({ resumeOpen: true })
+
+    handleRepoOnClick = name => this.setState({ selectedRepo: this.state.selectedRepo === name ? null : name })
 
     render() {
         const { classes } = this.props
@@ -78,14 +81,14 @@ class App extends React.Component {
                         </Grid>
                         <Grid className={classes.iconToolbar} container item justify="flex-end">
                             <Grid item>
-                                <Tooltip title="My Resume">
+                                <Tooltip title="Open my Resume">
                                     <IconButton color="inherit" href="#" aria-label="Resume" style={{marginTop: 2}} onClick={this.handleResumeOpen}>
                                         <ResumeIcon/>
                                     </IconButton>
                                 </Tooltip>
                             </Grid>
                             <Grid item>
-                                <Tooltip title="My GitHub">
+                                <Tooltip title="Go to my GitHub">
                                     <IconButton color="inherit" aria-label="GitHub" href="https://github.com/csarkosh">
                                         <FaGithub/>
                                     </IconButton>
@@ -105,9 +108,12 @@ class App extends React.Component {
                             <Grid key={name} item>
                                 <ProjectCard
                                     description={description}
+                                    expanded={name === this.state.selectedRepo}
+                                    onClick={this.handleRepoOnClick}
+                                    parent={!parent ? undefined : { name: parent.nameWithOwner, url: parent.url }}
+                                    readmeSrc={`/docs/readmes/${name}.html`}
                                     repoName={name}
                                     repoUrl={url}
-                                    parent={!parent ? undefined : { name: parent.nameWithOwner, url: parent.url }}
                                 />
                             </Grid>
                         ))}

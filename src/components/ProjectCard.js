@@ -1,5 +1,12 @@
 import React from 'react'
-import {ExpansionPanel, ExpansionPanelSummary, Grid, Typography, withStyles} from "@material-ui/core";
+import {
+    ExpansionPanel,
+    ExpansionPanelDetails,
+    ExpansionPanelSummary,
+    Grid,
+    Typography,
+    withStyles
+} from "@material-ui/core"
 
 
 const styles = () => ({
@@ -35,26 +42,42 @@ const styles = () => ({
             '&:hover': {
                 textDecoration: 'underline'
             }
-        }
+        },
     },
     undisabled: {
         backgroundColor: 'white !important',
+        cursor: 'pointer !important',
         opacity: '1 !important',
         pointerEvents: 'auto !important',
+    },
+    expansionPanelDetails: {
+        borderTop: '1px solid #c5cbdb',
+        margin: '0 24px',
+        padding: '8px 0 24px',
+        '& iframe': {
+            border: 'none'
+        }
+    },
+    buttonWrapper: {
+        border: 'none',
+        padding: 0,
     }
 })
 
-const ProjectCard = ({ classes, description, parent, repoName, repoUrl }) => {
+const stopPropagation = e => e.stopPropagation()
+
+const ProjectCard = ({ classes, description, expanded, onClick, parent, readmeSrc, repoName, repoUrl }) => {
     return (
-        <ExpansionPanel classes={{ root: classes.expansionPanelRoot, disabled: classes.undisabled }} disabled expanded={false}>
+        <button className={classes.buttonWrapper} onClick={() => onClick(repoName)}>
+        <ExpansionPanel classes={{ root: classes.expansionPanelRoot, disabled: classes.undisabled }} disabled expanded>
             <ExpansionPanelSummary classes={{ root: classes.expansionPanelSummaryRoot, disabled: classes.undisabled }}>
                 <Grid container direction="column">
                     <Grid className={classes.titleItem} item>
-                        <Typography variant="h6"><a href={repoUrl}>{repoName}</a></Typography>
+                        <Typography variant="h6"><a href={repoUrl} onClick={stopPropagation}>{repoName}</a></Typography>
                         { parent && (
                             <React.Fragment>
                                 <Typography className={classes.forkedFrom} variant="body2">
-                                    Forked from <a href={parent.url}>{parent.name}</a>
+                                    Forked from <a href={parent.url} onClick={stopPropagation}>{parent.name}</a>
                                 </Typography>
                             </React.Fragment>
                         )}
@@ -64,7 +87,17 @@ const ProjectCard = ({ classes, description, parent, repoName, repoUrl }) => {
                     </Grid>
                 </Grid>
             </ExpansionPanelSummary>
+            {expanded &&
+                <ExpansionPanelDetails className={classes.expansionPanelDetails}>
+                    <iframe
+                        title={`${repoName} README`}
+                        width="100%"
+                        src={readmeSrc}
+                    />
+                </ExpansionPanelDetails>
+            }
         </ExpansionPanel>
+        </button>
     )
 }
 
