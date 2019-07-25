@@ -150,6 +150,36 @@ resource "aws_cloudfront_distribution" "protocol_proxy" {
     target_origin_id = "${aws_api_gateway_deployment.deployment.id}"
     viewer_protocol_policy = "redirect-to-https"
   }
+  ordered_cache_behavior {
+    path_pattern = "/data/*"
+    allowed_methods = ["GET", "POST", "DELETE", "PUT", "HEAD", "PATCH", "OPTIONS"]
+    cached_methods = ["GET", "HEAD"]
+    "forwarded_values" {
+      "cookies" {
+        forward = "none"
+      }
+      query_string = true
+    }
+    max_ttl = 0
+    min_ttl = 0
+    target_origin_id = "${var.asset_origin_id}"
+    viewer_protocol_policy = "redirect-to-https"
+  }
+  ordered_cache_behavior {
+    path_pattern = "/docs/*"
+    allowed_methods = ["GET", "POST", "DELETE", "PUT", "HEAD", "PATCH", "OPTIONS"]
+    cached_methods = ["GET", "HEAD"]
+    "forwarded_values" {
+      "cookies" {
+        forward = "none"
+      }
+      query_string = true
+    }
+    max_ttl = 0
+    min_ttl = 0
+    target_origin_id = "${var.asset_origin_id}"
+    viewer_protocol_policy = "redirect-to-https"
+  }
   "default_cache_behavior" {
     allowed_methods = ["GET", "POST", "DELETE", "PUT", "HEAD", "PATCH", "OPTIONS"]
     cached_methods = ["GET", "HEAD"]
