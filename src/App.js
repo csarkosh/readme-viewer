@@ -151,7 +151,7 @@ class App extends React.Component {
                         { this.state.selectedRepo && (
                             <div className={classes.theater}>
                                 <div>
-                                    <iframe src={`/docs/readmes/${this.state.repoMap[this.state.selectedRepo].name}.html`} />
+                                    <iframe title="readme theater" src={`/docs/readmes/${this.state.repoMap[this.state.selectedRepo].name}.html`} />
                                 </div>
                             </div>
                         )}
