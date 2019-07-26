@@ -8,9 +8,7 @@ import ProjectCard from "./components/ProjectCard";
 import axios from 'axios'
 
 const appBarHeight = '50px'
-const mobileTheaterHeight = '170px'
-const mobileThreshold = '600px'
-const theaterHeight = '300px'
+const theaterHeight = '200px'
 
 const styles = () => ({
     appBar: {
@@ -48,21 +46,18 @@ const styles = () => ({
         position: 'fixed',
         width: '100%',
         zIndex: 5,
-        [`@media (min-width: ${mobileThreshold})`]: {
-            height: `calc(100vh - ${mobileTheaterHeight})`
-        }
     },
     theaterReposContainer: {
         height: `calc(${theaterHeight} - ${appBarHeight})`,
         overflowY: 'auto',
         width: '100vw',
         marginTop: `calc(100vh - ${theaterHeight})`,
-        [`@media (min-width: ${mobileThreshold})`]: {
-            marginTop: `calc(100vh - ${mobileTheaterHeight})`
-        },
         '& > button': {
             margin: 8
         },
+        '& > button:first-child': {
+            marginTop: 16
+        }
     },
 });
 
@@ -88,7 +83,7 @@ class App extends React.Component {
     render() {
         const { classes } = this.props
         return (
-            <div style={{ marginTop: -2}}>
+            <div style={{ marginTop: -4}}>
                 <a href="https://github.com/csarkosh/csarko.sh">
                     <img width="149" height="149"
                         src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149"
