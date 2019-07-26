@@ -79,7 +79,6 @@ class App extends React.Component {
         resumeOpen: false,
         repoIds: null,
         repoMap: null,
-        repos: null,
         selectedRepo: null,
     }
 
@@ -90,7 +89,7 @@ class App extends React.Component {
                 const repoIds = repos.map(repo => repo.name)
                 const repoMap = {}
                 repos.forEach(repo => repoMap[repo.name] = repo)
-                this.setState({ repos, selectedRepo: repos[0].name, repoMap, repoIds })
+                this.setState({ selectedRepo: repos[0].name, repoMap, repoIds })
             })
             .catch(() => this.setState({ hasReposError: true }))
     }
@@ -146,62 +145,36 @@ class App extends React.Component {
                     <Typography className={classes.bodyText} variant="h3">Oops... An error has occurred fetching my repo data</Typography>
                 }
 
-                { this.state.repos &&
-                    <React.Fragment>
-                        { this.state.selectedRepo && (
-                            <div className={classes.theater}>
-                                <div>
-                                    <iframe title="readme theater" src={`/docs/readmes/${this.state.repoMap[this.state.selectedRepo].name}.html`} />
-                                </div>
+                <React.Fragment>
+                    { this.state.selectedRepo && (
+                        <div className={classes.theater}>
+                            <div>
+                                <iframe title="readme theater" src={`/docs/readmes/${this.state.repoMap[this.state.selectedRepo].name}.html`} />
                             </div>
-                        )}
-                        { this.state.selectedRepo !== null &&
-                            <div className={classes.theaterReposContainer}>
-                                {this.state.repoIds.map(id => {
-                                    const {description, name, parent, url} = this.state.repoMap[id]
-                                    return (
-                                        <ProjectCard
-                                            key={name}
-                                            description={description}
-                                            expanded={name === this.state.selectedRepo}
-                                            onClick={this.handleRepoOnClick}
-                                            parent={!parent ? undefined : {name: parent.nameWithOwner, url: parent.url}}
-                                            readmeSrc={`/docs/readmes/${name}.html`}
-                                            repoName={name}
-                                            repoUrl={url}
-                                            selected={this.state.selectedRepo === name}
-                                        />
-                                    )
-                                })}
-                            </div>
-                        }
-                        { this.state.selectedRepo === null &&
-                            <Grid
-                                className={classes.reposContainer}
-                                container
-                                direction="column"
-                                item
-                                alignItems="center"
-                                spacing={2}
-                                wrap={this.state.selectedRepo ? undefined : 'nowrap'}
-                            >
-                                {this.state.repos.map(({description, name, parent, url}) => (
-                                    <Grid key={name} item>
-                                        <ProjectCard
-                                            description={description}
-                                            expanded={name === this.state.selectedRepo}
-                                            onClick={this.handleRepoOnClick}
-                                            parent={!parent ? undefined : {name: parent.nameWithOwner, url: parent.url}}
-                                            readmeSrc={`/docs/readmes/${name}.html`}
-                                            repoName={name}
-                                            repoUrl={url}
-                                        />
-                                    </Grid>
-                                ))}
-                            </Grid>
-                        }
-                    </React.Fragment>
-                }
+                        </div>
+                    )}
+                    { this.state.selectedRepo !== null &&
+                        <div className={classes.theaterReposContainer}>
+                            {this.state.repoIds.map(id => {
+                                const {description, name, parent, url} = this.state.repoMap[id]
+                                return (
+                                    <ProjectCard
+                                        key={name}
+                                        description={description}
+                                        expanded={name === this.state.selectedRepo}
+                                        onClick={this.handleRepoOnClick}
+                                        parent={!parent ? undefined : {name: parent.nameWithOwner, url: parent.url}}
+                                        readmeSrc={`/docs/readmes/${name}.html`}
+                                        repoName={name}
+                                        repoUrl={url}
+                                        selected={this.state.selectedRepo === name}
+                                    />
+                                )
+                            })}
+                        </div>
+                    }
+                </React.Fragment>
+
 
                 <ResumeModal
                     onClose={this.handleResumeClose}
