@@ -8,7 +8,7 @@ import ProjectCard from "./components/ProjectCard";
 import axios from 'axios'
 
 const appBarHeight = '50px'
-const theaterHeight = '300px'
+const theaterHeight = '400px'
 
 const styles = () => ({
     appBar: {
@@ -46,12 +46,22 @@ const styles = () => ({
         position: 'fixed',
         width: '100%',
         zIndex: 5,
+        '& iframe': {
+            backgroundColor: 'white',
+            border: 'none',
+            height: `calc(100vh - ${theaterHeight})`,
+            width: '70vw'
+        },
+        '& > div': {
+            margin: '0 auto',
+            width: 'fit-content',
+        },
     },
     theaterReposContainer: {
         alignItems: 'flex-start',
         display: 'flex',
         flexWrap: 'wrap',
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
         height: `calc(${theaterHeight} - ${appBarHeight})`,
         overflowY: 'auto',
         width: '100vw',
@@ -133,7 +143,13 @@ class App extends React.Component {
 
                 { this.state.repos &&
                     <React.Fragment>
-                        { this.state.selectedRepo && <div className={classes.theater} /> }
+                        { this.state.selectedRepo && (
+                            <div className={classes.theater}>
+                                <div>
+                                    <iframe src="/docs/readmes/csarko.sh.html" />
+                                </div>
+                            </div>
+                        )}
                         { this.state.selectedRepo !== null &&
                             <div className={classes.theaterReposContainer}>
                                 {this.state.repos.map(({description, name, parent, url}) => (
