@@ -53,7 +53,48 @@ exports.handler = async () => {
             Promise.all(repos.map(({ name, url }) => new Promise(res => {
                 axios.get(`${url}/blob/master/README.md`).then(({ data }) => {
                     const $ = cheerio.load(data)
-                    res({ name, readme: $('#readme').html() })
+                    const readme = $('#readme')
+
+                    // Style readme
+                    readme.prepend(`
+                        <style>
+                            article {
+                                color: #24292e; 
+                                font-family: -apple-system, Helvetica, Arial, sans-serif;
+                                margin-top: 16px;
+                                overflow-x: hidden;
+                            }
+                            a:not(.anchor) { color: #0366d6; }
+                            a:not(:hover) {
+                                text-decoration: none;
+                            }
+                            a.anchor {
+                                display: none;
+                            }
+                            h1 {
+                                border-bottom: solid 1px rgb(234, 236, 239);
+                                font-size: 32px;
+                                font-weight: 600;
+                                overflow-wrap: break-word;
+                            }
+                            h2 {
+                                border-bottom: solid 1px rgb(234, 236, 239);
+                                font-size: 24px;
+                                font-weight: 600;
+                                line-height: 30px;
+                                overflow-wrap: break-word;
+                            }
+                        </style>
+                    `)
+
+                    // Replace relative paths with absolute paths to github
+                        readme
+                            .find('img')
+                            .filter((idx, el) => $(el).attr('src').match('^\/'))
+                            .attr('src', (idx, val) => `https://github.com${val}`)
+                            .length
+
+                    res({ name, readme: readme.html() })
                 })
             }))).then(readmes => resolve({ repos, readmes }))
         }
@@ -63,3 +104,5 @@ exports.handler = async () => {
         ...readmes.map(({ name, readme }) => uploadToS3('csarko.sh', `docs/readmes/${name}.html`, readme, { ContentType: 'text/html' }))
     ]))
 }
+
+exports.handler()
