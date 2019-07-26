@@ -53,20 +53,16 @@ const styles = () => ({
         }
     },
     theaterReposContainer: {
-        height: '100vw',
-        width: 250,
-        overflowX: 'auto',
+        height: `calc(${theaterHeight} - ${appBarHeight})`,
+        overflowY: 'auto',
+        width: '100vw',
         marginTop: `calc(100vh - ${theaterHeight})`,
-        transform: 'rotate(-90deg)',
-        transformOrigin: 'right top',
-        zIndex: -1,
-        '& > div': {
-            transform: 'rotate(90deg)',
-            transformOrigin: 'right top',
-        },
         [`@media (min-width: ${mobileThreshold})`]: {
             marginTop: `calc(100vh - ${mobileTheaterHeight})`
-        }
+        },
+        '& > button': {
+            margin: 8
+        },
     },
 });
 
@@ -137,8 +133,24 @@ class App extends React.Component {
 
                 { this.state.repos &&
                     <React.Fragment>
-                        {this.state.selectedRepo && <div className={classes.theater} /> }
-                        {this.state.selectedRepo === null &&
+                        { this.state.selectedRepo && <div className={classes.theater} /> }
+                        { this.state.selectedRepo !== null &&
+                            <div className={classes.theaterReposContainer}>
+                                {this.state.repos.map(({description, name, parent, url}) => (
+                                    <ProjectCard
+                                        key={name}
+                                        description={description}
+                                        expanded={name === this.state.selectedRepo}
+                                        onClick={this.handleRepoOnClick}
+                                        parent={!parent ? undefined : {name: parent.nameWithOwner, url: parent.url}}
+                                        readmeSrc={`/docs/readmes/${name}.html`}
+                                        repoName={name}
+                                        repoUrl={url}
+                                    />
+                                ))}
+                            </div>
+                        }
+                        { this.state.selectedRepo === null &&
                             <Grid
                                 className={classes.reposContainer}
                                 container
