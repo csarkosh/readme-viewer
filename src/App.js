@@ -6,11 +6,15 @@ import ResumeIcon from "./components/ResumeIcon";
 import ResumeModal from './components/ResumeModal'
 import ProjectCard from "./components/ProjectCard";
 import axios from 'axios'
-import classnames from 'classnames'
+
+const appBarHeight = '50px'
+const mobileTheaterHeight = '170px'
+const mobileThreshold = '600px'
+const theaterHeight = '300px'
 
 const styles = () => ({
     appBar: {
-        height: 50,
+        height: appBarHeight,
     },
     appBarLogo: {
         margin: '8px 0 0 8px',
@@ -32,7 +36,7 @@ const styles = () => ({
     reposContainer: {
         marginTop: 8,
         overflowY: 'auto',
-        height: 'calc(100vh - 50px)',
+        height: `calc(100vh - ${appBarHeight})`,
     },
     forkMeBanner: {
         position: 'fixed',
@@ -40,16 +44,29 @@ const styles = () => ({
     },
     theater: {
         backgroundColor: 'black',
-        height: 'calc(100vh - 300px)',
+        height: `calc(100vh - ${theaterHeight})`,
         position: 'fixed',
         width: '100%',
-        zIndex: 5
+        zIndex: 5,
+        [`@media (min-width: ${mobileThreshold})`]: {
+            height: `calc(100vh - ${mobileTheaterHeight})`
+        }
     },
     theaterReposContainer: {
-        height: 250,
+        height: '100vw',
+        width: 250,
         overflowX: 'auto',
-        marginTop: 'calc(100vh - 300px)',
-        zIndex: -1
+        marginTop: `calc(100vh - ${theaterHeight})`,
+        transform: 'rotate(-90deg)',
+        transformOrigin: 'right top',
+        zIndex: -1,
+        '& > div': {
+            transform: 'rotate(90deg)',
+            transformOrigin: 'right top',
+        },
+        [`@media (min-width: ${mobileThreshold})`]: {
+            marginTop: `calc(100vh - ${mobileTheaterHeight})`
+        }
     },
 });
 
@@ -121,33 +138,31 @@ class App extends React.Component {
                 { this.state.repos &&
                     <React.Fragment>
                         {this.state.selectedRepo && <div className={classes.theater} /> }
-                        <Grid
-                            className={classnames({
-                                [classes.reposContainer]: this.state.selectedRepo === null,
-                                [classes.theaterReposContainer]: this.state.selectedRepo !== null
-                            })}
-                            container
-                            direction="column"
-                            item
-                            alignItems="center"
-                            //justify="center"
-                            spacing={2}
-                            wrap={this.state.selectedRepo ? undefined : 'nowrap'}
-                        >
-                            {this.state.repos.map(({ description, name, parent, url }) => (
-                                <Grid key={name} item>
-                                    <ProjectCard
-                                        description={description}
-                                        expanded={name === this.state.selectedRepo}
-                                        onClick={this.handleRepoOnClick}
-                                        parent={!parent ? undefined : { name: parent.nameWithOwner, url: parent.url }}
-                                        readmeSrc={`/docs/readmes/${name}.html`}
-                                        repoName={name}
-                                        repoUrl={url}
-                                    />
-                                </Grid>
-                            ))}
-                        </Grid>
+                        {this.state.selectedRepo === null &&
+                            <Grid
+                                className={classes.reposContainer}
+                                container
+                                direction="column"
+                                item
+                                alignItems="center"
+                                spacing={2}
+                                wrap={this.state.selectedRepo ? undefined : 'nowrap'}
+                            >
+                                {this.state.repos.map(({description, name, parent, url}) => (
+                                    <Grid key={name} item>
+                                        <ProjectCard
+                                            description={description}
+                                            expanded={name === this.state.selectedRepo}
+                                            onClick={this.handleRepoOnClick}
+                                            parent={!parent ? undefined : {name: parent.nameWithOwner, url: parent.url}}
+                                            readmeSrc={`/docs/readmes/${name}.html`}
+                                            repoName={name}
+                                            repoUrl={url}
+                                        />
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        }
                     </React.Fragment>
                 }
 
