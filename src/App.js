@@ -50,6 +50,7 @@ const styles = () => ({
             backgroundColor: 'white',
             border: 'none',
             height: `calc(100vh - ${theaterHeight})`,
+            overflowX: 'hidden',
             width: '70vw'
         },
         '& > div': {
