@@ -8,7 +8,7 @@ import ProjectCard from "./components/ProjectCard";
 import axios from 'axios'
 
 const appBarHeight = '50px'
-const theaterHeight = '200px'
+const theaterHeight = '300px'
 
 const styles = () => ({
     appBar: {
@@ -48,16 +48,18 @@ const styles = () => ({
         zIndex: 5,
     },
     theaterReposContainer: {
+        alignItems: 'flex-start',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly',
         height: `calc(${theaterHeight} - ${appBarHeight})`,
         overflowY: 'auto',
         width: '100vw',
         marginTop: `calc(100vh - ${theaterHeight})`,
+        paddingTop: 8,
         '& > button': {
             margin: 8
         },
-        '& > button:first-child': {
-            marginTop: 16
-        }
     },
 });
 
@@ -71,14 +73,17 @@ class App extends React.Component {
 
     componentDidMount() {
         axios.get('/data/repos.json')
-            .then(({ data }) => this.setState({ repos: data.sort((a, b) =>b.isFork ? -1 : 1) }))
+            .then(({ data }) => {
+                const repos = data.sort((a, b) =>b.isFork ? -1 : 1)
+                this.setState({ repos, selectedRepo: repos[0].name })
+            })
             .catch(() => this.setState({ hasReposError: true }))
     }
 
     handleResumeClose = () => this.setState({ resumeOpen: false })
     handleResumeOpen = () => this.setState({ resumeOpen: true })
 
-    handleRepoOnClick = name => this.setState({ selectedRepo: this.state.selectedRepo === name ? null : name })
+    handleRepoOnClick = name => name !== this.state.selectedRepo && this.setState({ selectedRepo: name })
 
     render() {
         const { classes } = this.props
@@ -141,6 +146,7 @@ class App extends React.Component {
                                         readmeSrc={`/docs/readmes/${name}.html`}
                                         repoName={name}
                                         repoUrl={url}
+                                        selected={this.state.selectedRepo === name}
                                     />
                                 ))}
                             </div>

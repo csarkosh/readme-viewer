@@ -7,6 +7,7 @@ import {
     Typography,
     withStyles
 } from "@material-ui/core"
+import classnames from 'classnames'
 
 
 const styles = () => ({
@@ -63,16 +64,24 @@ const styles = () => ({
         border: 'none',
         textAlign: 'left',
         padding: 0,
-    }
+    },
+    selected: {
+        backgroundColor: '#ebecf2 !important'
+    },
 })
 
 const stopPropagation = e => e.stopPropagation()
 
-const ProjectCard = ({ classes, description, expanded, onClick, parent, readmeSrc, repoName, repoUrl }) => {
+const ProjectCard = ({ classes, description, expanded, onClick, parent, readmeSrc, repoName, repoUrl, selected }) => {
     return (
         <button className={classes.buttonWrapper} onClick={() => onClick(repoName)}>
         <ExpansionPanel classes={{ root: classes.expansionPanelRoot, disabled: classes.undisabled }} disabled expanded={false}>
-            <ExpansionPanelSummary classes={{ root: classes.expansionPanelSummaryRoot, disabled: classes.undisabled }}>
+            <ExpansionPanelSummary
+                classes={{
+                    root: `${classes.expansionPanelSummaryRoot} ${classnames({ [classes.selected]: selected })}`,
+                    disabled: classes.undisabled
+                }}
+            >
                 <Grid container direction="column">
                     <Grid className={classes.titleItem} item>
                         <Typography variant="h6"><a href={repoUrl} onClick={stopPropagation}>{repoName}</a></Typography>
