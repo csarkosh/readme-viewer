@@ -71,7 +71,7 @@ const stopPropagation = e => e.stopPropagation()
 const ProjectCard = ({ classes, description, expanded, onClick, parent, readmeSrc, repoName, repoUrl }) => {
     return (
         <button className={classes.buttonWrapper} onClick={() => onClick(repoName)}>
-        <ExpansionPanel classes={{ root: classes.expansionPanelRoot, disabled: classes.undisabled }} disabled expanded>
+        <ExpansionPanel classes={{ root: classes.expansionPanelRoot, disabled: classes.undisabled }} disabled expanded={false}>
             <ExpansionPanelSummary classes={{ root: classes.expansionPanelSummaryRoot, disabled: classes.undisabled }}>
                 <Grid container direction="column">
                     <Grid className={classes.titleItem} item>
