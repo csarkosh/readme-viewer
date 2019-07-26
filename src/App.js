@@ -77,6 +77,8 @@ class App extends React.Component {
     state = {
         hasReposError: false,
         resumeOpen: false,
+        repoIds: null,
+        repoMap: null,
         repos: null,
         selectedRepo: null,
     }
@@ -85,7 +87,10 @@ class App extends React.Component {
         axios.get('/data/repos.json')
             .then(({ data }) => {
                 const repos = data.sort((a, b) =>b.isFork ? -1 : 1)
-                this.setState({ repos, selectedRepo: repos[0].name })
+                const repoIds = repos.map(repo => repo.name)
+                const repoMap = {}
+                repos.forEach(repo => repoMap[repo.name] = repo)
+                this.setState({ repos, selectedRepo: repos[0].name, repoMap, repoIds })
             })
             .catch(() => this.setState({ hasReposError: true }))
     }
@@ -146,25 +151,28 @@ class App extends React.Component {
                         { this.state.selectedRepo && (
                             <div className={classes.theater}>
                                 <div>
-                                    <iframe src="/docs/readmes/csarko.sh.html" />
+                                    <iframe src={`/docs/readmes/${this.state.repoMap[this.state.selectedRepo].name}.html`} />
                                 </div>
                             </div>
                         )}
                         { this.state.selectedRepo !== null &&
                             <div className={classes.theaterReposContainer}>
-                                {this.state.repos.map(({description, name, parent, url}) => (
-                                    <ProjectCard
-                                        key={name}
-                                        description={description}
-                                        expanded={name === this.state.selectedRepo}
-                                        onClick={this.handleRepoOnClick}
-                                        parent={!parent ? undefined : {name: parent.nameWithOwner, url: parent.url}}
-                                        readmeSrc={`/docs/readmes/${name}.html`}
-                                        repoName={name}
-                                        repoUrl={url}
-                                        selected={this.state.selectedRepo === name}
-                                    />
-                                ))}
+                                {this.state.repoIds.map(id => {
+                                    const {description, name, parent, url} = this.state.repoMap[id]
+                                    return (
+                                        <ProjectCard
+                                            key={name}
+                                            description={description}
+                                            expanded={name === this.state.selectedRepo}
+                                            onClick={this.handleRepoOnClick}
+                                            parent={!parent ? undefined : {name: parent.nameWithOwner, url: parent.url}}
+                                            readmeSrc={`/docs/readmes/${name}.html`}
+                                            repoName={name}
+                                            repoUrl={url}
+                                            selected={this.state.selectedRepo === name}
+                                        />
+                                    )
+                                })}
                             </div>
                         }
                         { this.state.selectedRepo === null &&
