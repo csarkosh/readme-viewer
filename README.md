@@ -4,7 +4,7 @@ The purpose of this project is to demonstrate my cdn-serverless hybrid architect
 
 * **Fully Automated:** Builds and deployments are fully automated and are intiated from code changes pushed to the master branch at this git origin. The automated builds and deployments include a container image for [CircleCI](https://circleci.com/) to run builds and deployments, a [create-react-app](https://facebook.github.io/create-react-app/) build and deploy for the web interface, and various lambdas for serving HTTP requests and scraping web data.
 
-* **Immutable Infrastructure:** All cloud infrastructure was developed and committed in code using [terraform](https://www.terraform.io/). This, paired with a VCS like [git](https://git-scm.com/), made it easy to apply and revert infrastructure changes.
+* **Immutable Infrastructure:** All cloud infrastructure was developed and committed as code using [terraform](https://www.terraform.io/). This, paired with [git](https://git-scm.com/), was the development method used for building this application.
 
 * **Responsive & Accessible:** The web interface is fully keyboard accessible, and the desktop view collapses into a native-looking, mobile view. This was done by using [create-react-app](https://facebook.github.io/create-react-app/) for desktop/mobile tooling and [material-ui](https://material-ui.com/) for prebuilt, accessible, web components.
 
