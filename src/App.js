@@ -6,6 +6,8 @@ import ResumeIcon from "./components/ResumeIcon";
 import ResumeModal from './components/ResumeModal'
 import axios from 'axios'
 import Project from "./components/ProjectButton";
+import Grow from "@material-ui/core/Grow";
+import Slide from "@material-ui/core/Slide";
 
 const appBarHeight = '50px'
 const theaterHeight = '400px'
@@ -173,7 +175,21 @@ class App extends React.Component {
                     <div className={classes.theater}>
                         <div>
                             <div>
-                                <iframe title="readme theater" src={`/docs/readmes/${this.state.repoMap[this.state.selectedRepo].name}.html`} />
+                                { this.state.repoIds.map(id => {
+                                    const isSelected = id === this.state.selectedRepo
+                                    return (
+                                        <iframe
+                                            title="readme theater"
+                                            src={`/docs/readmes/${this.state.repoMap[id].name}.html`}
+                                            style={{
+                                                display: isSelected ? undefined : 'inline',
+                                                position: 'absolute',
+                                                transform: isSelected ? 'translateX(-50%)' : 'translateX(100vw)',
+                                                transition: 'all 0.75s'
+                                            }}
+                                        />
+                                    )
+                                })}
                             </div>
                         </div>
                     </div>

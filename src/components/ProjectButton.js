@@ -56,7 +56,7 @@ export default withStyles(styles)(({
             className={classes.wrapper}
             variant="outlined"
             onClick={() => onClick(name)}
-            style={selected ? {backgroundColor: '#fcfdfe'} : undefined}
+            style={selected ? {backgroundColor: 'white'} : undefined}
         >
             <Grid container direction="column">
                 <Grid className={classes.titleWrapper} item>
