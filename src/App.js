@@ -184,7 +184,7 @@ class App extends React.Component {
                                             style={{
                                                 display: isSelected ? undefined : 'inline',
                                                 position: 'absolute',
-                                                transform: isSelected ? 'translateX(-50%)' : 'translateX(100vw)',
+                                                transform: isSelected ? 'translateX(-50%)' : 'translateX(-300vw)',
                                                 transition: 'all 0.75s'
                                             }}
                                         />
