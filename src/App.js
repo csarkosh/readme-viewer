@@ -53,7 +53,8 @@ const styles = () => ({
             height: `calc(100vh - ${theaterHeight})`,
             maxHeight: 500,
             overflowX: 'hidden',
-            width: '70vw'
+            width: '70vw',
+            maxWidth: 910,
         },
         '& > div': {
             margin: '0 auto',
@@ -81,7 +82,9 @@ const styles = () => ({
             flexWrap: 'wrap',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'flex-start'
+            alignItems: 'flex-start',
+            margin: '0 auto',
+            maxWidth: 1400
         }
     },
 });
