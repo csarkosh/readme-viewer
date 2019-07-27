@@ -6,7 +6,7 @@ The purpose of this project is to demonstrate my cdn-serverless hybrid architect
 
 * **Immutable Infrastructure:** All cloud infrastructure was developed and committed in code using [terraform](https://www.terraform.io/). This, paired with a VCS like [git](https://git-scm.com/), made it easy to apply and revert infrastructure changes.
 
-* **Responsive & Accessible:** The web interface is fully keyboard accessible, and collapses from a desktop view into a native-app-looking, mobile view. This was done by using [create-react-app](https://facebook.github.io/create-react-app/) for desktop/mobile tooling and [material-ui](https://material-ui.com/) for prebuilt, accessible, web components.
+* **Responsive & Accessible:** The web interface is fully keyboard accessible, and the desktop view collapses into a native-looking, mobile view. This was done by using [create-react-app](https://facebook.github.io/create-react-app/) for desktop/mobile tooling and [material-ui](https://material-ui.com/) for prebuilt, accessible, web components.
 
 
 [View this application's publically-available, web interface.](https://csarko.sh)
