@@ -186,6 +186,7 @@ class App extends React.Component {
                                                 onClick={this.handleRepoOnClick}
                                                 parent={!parent ? undefined : {name: parent.nameWithOwner, url: parent.url}}
                                                 selected={this.state.selectedRepo === name}
+                                                url={url}
                                             />
                                         </div>
                                     )
