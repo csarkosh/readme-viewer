@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 const styles = () => ({
     wrapper: {
         border: '2px solid rgba(51, 60, 79, 0.73)',
-        color: '#333c4f',
+        color: '#474f60',
         maxWidth: 600,
         width: '40vw',
         minWidth: 350,
@@ -17,7 +17,10 @@ const styles = () => ({
             width: '95vw'
         },
         '&:hover': {
-            backgroundColor: '#f8fafc'
+            backgroundColor: '#f4f7fb',
+            border: '2px solid rgba(51, 60, 79, 0.9)',
+            color: '#14181f',
+            transition: 'border 0.25s, color 0.25s, background-color 10s',
         },
         '& a': {
             color: '#333c4f',
@@ -56,7 +59,12 @@ export default withStyles(styles)(({
             className={classes.wrapper}
             variant="outlined"
             onClick={() => onClick(name)}
-            style={selected ? {backgroundColor: 'white'} : undefined}
+            style={!selected ? undefined : {
+                backgroundColor: 'white',
+                border: '2px solid #14181f',
+                color: '#14181f',
+                transition: 'border 0.5s, color 0.5s, background-color 0.2s',
+            }}
         >
             <Grid container direction="column">
                 <Grid className={classes.titleWrapper} item>
