@@ -92,7 +92,9 @@ exports.handler = async () => {
                             .find('img')
                             .filter((idx, el) => $(el).attr('src').match('^\/'))
                             .attr('src', (idx, val) => `https://github.com${val}`)
-                            .length
+
+                    // Remove hyperlinking out-of readme
+                    readme.find('a').attr('href', '#')
 
                     res({ name, readme: readme.html() })
                 })
@@ -104,5 +106,3 @@ exports.handler = async () => {
         ...readmes.map(({ name, readme }) => uploadToS3('csarko.sh', `docs/readmes/${name}.html`, readme, { ContentType: 'text/html' }))
     ]))
 }
-
-exports.handler()
