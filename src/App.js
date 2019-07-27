@@ -4,8 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { FaGithub } from 'react-icons/fa';
 import ResumeIcon from "./components/ResumeIcon";
 import ResumeModal from './components/ResumeModal'
-import ProjectCard from "./components/ProjectCard";
 import axios from 'axios'
+import Project from "./components/ProjectButton";
 
 const appBarHeight = '50px'
 const theaterHeight = '400px'
@@ -42,6 +42,7 @@ const styles = () => ({
     },
     theater: {
         backgroundColor: 'black',
+        boxShadow: '0 2px 2px',
         height: `calc(100vh - ${theaterHeight})`,
         maxHeight: 500,
         position: 'fixed',
@@ -116,7 +117,7 @@ class App extends React.Component {
     handleResumeClose = () => this.setState({ resumeOpen: false })
     handleResumeOpen = () => this.setState({ resumeOpen: true })
 
-    handleRepoOnClick = name => name !== this.state.selectedRepo && this.setState({ selectedRepo: name })
+    handleRepoOnClick = id => id !== this.state.selectedRepo && this.setState({ selectedRepo: id })
 
     render() {
         const { classes } = this.props
@@ -179,14 +180,11 @@ class App extends React.Component {
                                     const {description, name, parent, url} = this.state.repoMap[id]
                                     return (
                                         <div key={name}>
-                                            <ProjectCard
+                                            <Project
                                                 description={description}
-                                                expanded={name === this.state.selectedRepo}
+                                                name={name}
                                                 onClick={this.handleRepoOnClick}
                                                 parent={!parent ? undefined : {name: parent.nameWithOwner, url: parent.url}}
-                                                readmeSrc={`/docs/readmes/${name}.html`}
-                                                repoName={name}
-                                                repoUrl={url}
                                                 selected={this.state.selectedRepo === name}
                                             />
                                         </div>
