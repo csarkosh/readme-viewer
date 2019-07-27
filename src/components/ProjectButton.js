@@ -17,10 +17,10 @@ const styles = () => ({
             width: '95vw'
         },
         '&:hover': {
-            backgroundColor: '#f4f7fb',
+            backgroundColor: 'transparent',
             border: '2px solid rgba(51, 60, 79, 0.9)',
             color: '#14181f',
-            transition: 'border 0.25s, color 0.25s, background-color 10s',
+            transition: 'border 0.25s, color 0.25s',
         },
         '& a': {
             color: '#333c4f',
