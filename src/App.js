@@ -55,6 +55,9 @@ const styles = () => ({
             overflowX: 'hidden',
             width: '70vw',
             maxWidth: 910,
+            '@media (max-width: 850px)': {
+                width: '90vw'
+            }
         },
         '& > div': {
             margin: '0 auto',
