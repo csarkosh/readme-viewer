@@ -2,7 +2,7 @@
 
 The purpose of this project is to demonstrate my cdn-serverless hybrid architecture, provide a custom web interface overview of my public GitHub projects, and showcase my ability to build web applications.
 
-* **Fully Automated:** Builds and deployments are fully automated and are intiated from code changes pushed to the master branch at this git origin. The automated builds and deployments include a container image for [CircleCI](https://circleci.com/) to run builds and deployments, a [create-react-app](https://facebook.github.io/create-react-app/) build and deploy for the web interface, and various lambdas for serving HTTP requests and scraping web data.
+* **Fully Automated:** Builds and deployments are fully automated and are intiated from code changes pushed to the master branch at this git origin. The automated builds and deployments include a container image for [CircleCI](https://circleci.com/) to run builds and deployments, [create-react-app's](https://facebook.github.io/create-react-app/) production build assets for the web interface, and various lambdas for serving HTTP requests and scraping web data.
 
 * **Immutable Infrastructure:** All cloud infrastructure was developed and committed as code using [terraform](https://www.terraform.io/). This, paired with [git](https://git-scm.com/), was the development method used for building this application.
 
