@@ -43,6 +43,7 @@ const styles = () => ({
     theater: {
         backgroundColor: 'black',
         height: `calc(100vh - ${theaterHeight})`,
+        maxHeight: 500,
         position: 'fixed',
         width: '100%',
         zIndex: 5,
@@ -50,6 +51,7 @@ const styles = () => ({
             backgroundColor: 'white',
             border: 'none',
             height: `calc(100vh - ${theaterHeight})`,
+            maxHeight: 500,
             overflowX: 'hidden',
             width: '70vw'
         },
@@ -60,17 +62,27 @@ const styles = () => ({
     },
     theaterReposContainer: {
         alignItems: 'flex-start',
-        display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
-        height: `calc(${theaterHeight} - ${appBarHeight})`,
+        height: 'calc(100vh - 500px)',
+        minHeight: `calc(${theaterHeight} - ${appBarHeight})`,
         overflowY: 'auto',
         width: '100vw',
         marginTop: `calc(100vh - ${theaterHeight})`,
         paddingTop: 8,
-        '& > button': {
-            margin: 8
+        '& button': {
+            margin: 8,
+            verticalAlign: 'top'
         },
+        '@media (min-height: 900px)': {
+            marginTop: 500,
+        },
+        '& > div': {
+            flexWrap: 'wrap',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'flex-start'
+        }
     },
 });
 
@@ -156,22 +168,25 @@ class App extends React.Component {
                     )}
                     { this.state.selectedRepo !== null &&
                         <div className={classes.theaterReposContainer}>
-                            {this.state.repoIds.map(id => {
-                                const {description, name, parent, url} = this.state.repoMap[id]
-                                return (
-                                    <ProjectCard
-                                        key={name}
-                                        description={description}
-                                        expanded={name === this.state.selectedRepo}
-                                        onClick={this.handleRepoOnClick}
-                                        parent={!parent ? undefined : {name: parent.nameWithOwner, url: parent.url}}
-                                        readmeSrc={`/docs/readmes/${name}.html`}
-                                        repoName={name}
-                                        repoUrl={url}
-                                        selected={this.state.selectedRepo === name}
-                                    />
-                                )
-                            })}
+                            <div>
+                                {this.state.repoIds.map(id => {
+                                    const {description, name, parent, url} = this.state.repoMap[id]
+                                    return (
+                                        <div key={name}>
+                                            <ProjectCard
+                                                description={description}
+                                                expanded={name === this.state.selectedRepo}
+                                                onClick={this.handleRepoOnClick}
+                                                parent={!parent ? undefined : {name: parent.nameWithOwner, url: parent.url}}
+                                                readmeSrc={`/docs/readmes/${name}.html`}
+                                                repoName={name}
+                                                repoUrl={url}
+                                                selected={this.state.selectedRepo === name}
+                                            />
+                                        </div>
+                                    )
+                                })}
+                            </div>
                         </div>
                     }
                 </React.Fragment>
