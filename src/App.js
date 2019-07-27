@@ -41,8 +41,7 @@ const styles = () => ({
         zIndex: 1250,
     },
     theater: {
-        backgroundColor: 'black',
-        boxShadow: '0 2px 2px',
+        backgroundColor: '#f2f5fa',
         height: `calc(100vh - ${theaterHeight})`,
         maxHeight: 500,
         position: 'fixed',
@@ -51,8 +50,8 @@ const styles = () => ({
         '& iframe': {
             backgroundColor: 'white',
             border: 'none',
-            height: `calc(100vh - ${theaterHeight})`,
-            maxHeight: 500,
+            height: `calc(100vh - ${theaterHeight} - 16px)`,
+            maxHeight: 500 - 16,
             overflowX: 'hidden',
             width: '70vw',
             maxWidth: 910,
@@ -61,6 +60,11 @@ const styles = () => ({
             }
         },
         '& > div': {
+            backgroundColor: 'black',
+            boxShadow: '0 2px 2px',
+            height: 'calc(100% - 16px)',
+        },
+        '& > div > div': {
             margin: '0 auto',
             width: 'fit-content',
         },
@@ -168,7 +172,9 @@ class App extends React.Component {
                 { this.state.selectedRepo && (
                     <div className={classes.theater}>
                         <div>
-                            <iframe title="readme theater" src={`/docs/readmes/${this.state.repoMap[this.state.selectedRepo].name}.html`} />
+                            <div>
+                                <iframe title="readme theater" src={`/docs/readmes/${this.state.repoMap[this.state.selectedRepo].name}.html`} />
+                            </div>
                         </div>
                     </div>
                 )}
