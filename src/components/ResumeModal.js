@@ -30,7 +30,7 @@ class ResumeModal extends React.Component {
                 onEscapeKeyDown={onClose}
                 open={open}
             >
-                <Slide direction="up" in={open}>
+                <Slide direction="up" in={open} timeout={500}>
                     <Paper className={classes.modalPaper}>
                         <embed
                             type="application/pdf"
