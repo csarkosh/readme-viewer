@@ -6,8 +6,6 @@ import ResumeIcon from "./components/ResumeIcon";
 import ResumeModal from './components/ResumeModal'
 import axios from 'axios'
 import Project from "./components/ProjectButton";
-import Grow from "@material-ui/core/Grow";
-import Slide from "@material-ui/core/Slide";
 
 const appBarHeight = '50px'
 const theaterHeight = '400px'
