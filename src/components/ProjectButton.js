@@ -22,7 +22,7 @@ const styles = () => ({
         '& a': {
             color: '#333c4f',
             textDecoration: 'none',
-            '&:hover': {
+            '&:hover, &:focus': {
                 color: '#3f51b5'
             },
         },
@@ -31,7 +31,7 @@ const styles = () => ({
         fontSize: 16,
         '& a': {
             color: '#3f51b5',
-            '&:hover': {
+            '&:hover, &:focus': {
                 textDecoration: 'underline',
             },
         },
@@ -60,11 +60,11 @@ export default withStyles(styles)(({
         >
             <Grid container direction="column">
                 <Grid className={classes.titleWrapper} item>
-                    <a href={url} onClick={stopPropagation}>{name}</a>
+                    <a href={url} onClick={stopPropagation} onFocus={stopPropagation}>{name}</a>
                 </Grid>
                 {parent && (
                     <Grid className={classes.forkedFromWrapper} item>
-                        Forked from <a href={parent.url} onClick={stopPropagation}>{parent.name}</a>
+                        Forked from <a href={parent.url} onClick={stopPropagation} onFocus={stopPropagation}>{parent.name}</a>
                     </Grid>
                 )}
                 <Grid className={classes.descriptionWrapper} item>{description}</Grid>
