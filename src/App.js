@@ -88,8 +88,8 @@ const styles = () => ({
             justifyContent: 'center',
             alignItems: 'flex-start',
             margin: '0 auto',
-            maxWidth: 1400
-        }
+            maxWidth: 1400,
+        },
     },
 });
 
@@ -165,36 +165,37 @@ class App extends React.Component {
                     <Typography className={classes.bodyText} variant="h3">Oops... An error has occurred fetching my repo data</Typography>
                 }
 
-                <React.Fragment>
-                    { this.state.selectedRepo && (
-                        <div className={classes.theater}>
-                            <div>
-                                <iframe title="readme theater" src={`/docs/readmes/${this.state.repoMap[this.state.selectedRepo].name}.html`} />
-                            </div>
+                { this.state.selectedRepo && (
+                    <div className={classes.theater}>
+                        <div>
+                            <iframe title="readme theater" src={`/docs/readmes/${this.state.repoMap[this.state.selectedRepo].name}.html`} />
                         </div>
-                    )}
-                    { this.state.selectedRepo !== null &&
-                        <div className={classes.theaterReposContainer}>
-                            <div>
-                                {this.state.repoIds.map(id => {
-                                    const {description, name, parent, url} = this.state.repoMap[id]
-                                    return (
-                                        <div key={name}>
-                                            <Project
-                                                description={description}
-                                                name={name}
-                                                onClick={this.handleRepoOnClick}
-                                                parent={!parent ? undefined : {name: parent.nameWithOwner, url: parent.url}}
-                                                selected={this.state.selectedRepo === name}
-                                                url={url}
-                                            />
-                                        </div>
-                                    )
-                                })}
-                            </div>
+                    </div>
+                )}
+
+
+                { this.state.selectedRepo !== null &&
+                    <div className={classes.theaterReposContainer}>
+                        <div>
+                            {this.state.repoIds.map(id => {
+                                const {description, name, parent, url} = this.state.repoMap[id]
+                                return (
+                                    <div key={name}>
+                                        <Project
+                                            description={description}
+                                            name={name}
+                                            onClick={this.handleRepoOnClick}
+                                            parent={!parent ? undefined : {name: parent.nameWithOwner, url: parent.url}}
+                                            selected={this.state.selectedRepo === name}
+                                            url={url}
+                                        />
+                                    </div>
+                                )
+                            })}
+                            <div style={{ opacity: 0, height: 64, width: '100vw' }}/>
                         </div>
-                    }
-                </React.Fragment>
+                    </div>
+                }
 
 
                 <ResumeModal
