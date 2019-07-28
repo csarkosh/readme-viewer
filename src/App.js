@@ -183,7 +183,7 @@ class App extends React.Component {
                                                 display: isSelected ? undefined : 'inline',
                                                 position: 'absolute',
                                                 transform: isSelected ? 'translateX(-50%)' : 'translateX(-300vw)',
-                                                transition: 'transform 0.75s'
+                                                transition: 'transform 0.6s'
                                             }}
                                         />
                                     )
