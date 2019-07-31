@@ -175,10 +175,12 @@ class App extends React.Component {
                             <div>
                                 { this.state.repoIds.map(id => {
                                     const isSelected = id === this.state.selectedRepo
+                                    const { name } = this.state.repoMap[id]
                                     return (
                                         <iframe
+                                            key={name}
                                             title="readme theater"
-                                            src={`/docs/readmes/${this.state.repoMap[id].name}.html`}
+                                            src={`/docs/readmes/${name}.html`}
                                             style={{
                                                 display: isSelected ? undefined : 'inline',
                                                 position: 'absolute',
