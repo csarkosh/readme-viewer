@@ -47,7 +47,7 @@ const styles = () => ({
         position: 'fixed',
         width: '100%',
         zIndex: 5,
-        '& iframe': {
+        '& embed': {
             backgroundColor: 'white',
             border: 'none',
             height: `calc(100vh - ${theaterHeight} - 16px)`,
@@ -57,7 +57,7 @@ const styles = () => ({
             maxWidth: 910,
             '@media (max-width: 850px)': {
                 width: '90vw'
-            }
+            },
         },
         '& > div': {
             backgroundColor: 'black',
@@ -177,7 +177,8 @@ class App extends React.Component {
                                     const isSelected = id === this.state.selectedRepo
                                     const { name } = this.state.repoMap[id]
                                     return (
-                                        <iframe
+                                        <embed
+                                            height="calc(100vh - 400px)"
                                             key={name}
                                             title="readme theater"
                                             src={`/docs/readmes/${name}.html`}
