@@ -7,12 +7,10 @@ import ResumeModal from './components/ResumeModal'
 import axios from 'axios'
 import Project from "./components/ProjectButton";
 
-const appBarHeight = '50px'
-const theaterHeight = '400px'
 
 const styles = () => ({
     appBar: {
-        height: appBarHeight,
+        height: 50,
     },
     appBarLogo: {
         margin: '8px 0 0 8px',
@@ -34,57 +32,41 @@ const styles = () => ({
     reposContainer: {
         marginTop: 8,
         overflowY: 'auto',
-        height: `calc(100vh - ${appBarHeight})`,
+        height: `calc(100vh - 50px)`,
     },
     forkMeBanner: {
         position: 'fixed',
         zIndex: 1250,
     },
-    theater: {
+    theater2: {
         backgroundColor: '#f2f5fa',
-        height: `calc(100vh - ${theaterHeight})`,
-        maxHeight: 500,
-        position: 'fixed',
-        width: '100%',
-        zIndex: 5,
-        '& embed': {
-            backgroundColor: 'white',
-            border: 'none',
-            height: `calc(100vh - ${theaterHeight} - 16px)`,
-            maxHeight: 500 - 16,
-            overflowX: 'hidden',
-            width: '70vw',
-            maxWidth: 910,
-            '@media (max-width: 850px)': {
-                width: '90vw'
-            },
-        },
+        paddingBottom: 16,
         '& > div': {
             backgroundColor: 'black',
             boxShadow: '0 2px 2px',
-            height: 'calc(100% - 16px)',
         },
         '& > div > div': {
+            height: 'calc(50vh - 50px)',
             margin: '0 auto',
-            width: 'fit-content',
+            overflow: 'auto',
+            width: 'calc(100vw - 32px)',
+            '-webkit-overflow-scrolling': 'touch',
         },
+        '& iframe': {
+            border: 'none',
+            backgroundColor: 'white',
+            height: '100%',
+            width: '100%',
+        }
     },
     theaterReposContainer: {
-        alignItems: 'flex-start',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        height: 'calc(100vh - 500px)',
-        minHeight: `calc(${theaterHeight} - ${appBarHeight})`,
+        height: 'calc(50vh - 50px)',
+        overflowX: 'hidden',
         overflowY: 'auto',
-        width: '100vw',
-        marginTop: `calc(100vh - ${theaterHeight})`,
         paddingTop: 8,
         '& button': {
             margin: 8,
             verticalAlign: 'top'
-        },
-        '@media (min-height: 900px)': {
-            marginTop: 500,
         },
         '& > div': {
             flexWrap: 'wrap',
@@ -165,28 +147,21 @@ class App extends React.Component {
                     </Grid>
                 </AppBar>
 
-                { this.state.hasReposError &&
-                    <Typography className={classes.bodyText} variant="h3">Oops... An error has occurred fetching my repo data</Typography>
-                }
-
-                { this.state.selectedRepo && (
-                    <div className={classes.theater}>
+                {this.state.selectedRepo &&
+                    <div className={classes.theater2}>
                         <div>
                             <div>
-                                { this.state.repoIds.map(id => {
-                                    const isSelected = id === this.state.selectedRepo
+                                {this.state.repoIds.map(id => {
                                     const { name } = this.state.repoMap[id]
+                                    const src = `/docs/readmes/${name}.html`
+                                    const isSelected = id === this.state.selectedRepo
                                     return (
-                                        <embed
-                                            height="calc(100vh - 400px)"
-                                            key={name}
+                                        <iframe
+                                            src={src}
                                             title="readme theater"
-                                            src={`/docs/readmes/${name}.html`}
+                                            key={name}
                                             style={{
-                                                display: isSelected ? undefined : 'inline',
-                                                position: 'absolute',
-                                                transform: isSelected ? 'translateX(-50%)' : 'translateX(-300vw)',
-                                                transition: 'transform 0.65s'
+                                                display: isSelected ? 'block' : 'none'
                                             }}
                                         />
                                     )
@@ -194,7 +169,11 @@ class App extends React.Component {
                             </div>
                         </div>
                     </div>
-                )}
+                }
+
+                { this.state.hasReposError &&
+                    <Typography className={classes.bodyText} variant="h3">Oops... An error has occurred fetching my repo data</Typography>
+                }
 
 
                 { this.state.selectedRepo !== null &&
