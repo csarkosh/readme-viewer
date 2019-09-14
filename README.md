@@ -12,4 +12,4 @@ The purpose of this project is to demonstrate my serverless-cdn architecture, pr
 [View this application's publically-available, web interface.](https://csarko.sh)
 
 ## Architecture
-![Serverless-CDN Hybrid Architecture](https://csarko.sh/docs/cdn-serverless.svg)
+![Serverless-CDN Hybrid Architecture](https://csarko.sh/docs/cdn-serverless.svg) 
