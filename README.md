@@ -13,3 +13,7 @@ The purpose of this project is to demonstrate my serverless-cdn architecture, pr
 
 ## Architecture
 ![Serverless-CDN Hybrid Architecture](https://csarko.sh/docs/cdn-serverless.svg) 
+
+
+[Read my story on the use-cases that drove the shape of this architecture.](https://medium.com/@csarkosh/my-experience-getting-an-a-from-mozillas-observatory-tool-on-aws-f0abf12811a1)
+
