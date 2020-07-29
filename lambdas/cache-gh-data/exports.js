@@ -51,7 +51,14 @@ exports.handler = async () => {
     // Download my repos' READMEs
     })).then(({ data }) => new Promise((resolve) => {
         if (data && data.data && data.data.user && data.data.user.repositories && data.data.user.repositories.edges && data.data.user.repositories.edges.length) {
-            const repos = data.data.user.repositories.edges.map(({ node }) => node)
+            const repos = []
+            data.data.user.repositories.edges.forEach(({ node }) => {
+                // Ignore profile Readme
+                if (node.name !== 'csarkosh') {
+                    repos.push(node)
+                }
+            })
+
             Promise.all(repos.map(({ name, url }) => new Promise(res => {
                 axios.get(`${url}/blob/master/README.md`).then(({ data }) => {
                     const $ = cheerio.load(data)
