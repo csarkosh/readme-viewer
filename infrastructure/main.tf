@@ -64,7 +64,7 @@ module "gh_cron" {
   source = "./modules/scheduled-lambda"
   s3_bucket = "readme-viewer.csarko.sh-lambdas2"
   s3_key = "cache-gh-data.zip"
-  schedule_expression = "rate(1 hour)"
+  schedule_expression = "rate(7 days)"
   name = "cache-gh-data"
 }
 

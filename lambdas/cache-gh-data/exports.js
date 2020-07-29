@@ -14,11 +14,13 @@ exports.handler = async () => {
     // Get GH read-only token
     await new Promise((resolve, reject) => {
         (new aws.SecretsManager({ region: 'us-east-1' }))
-            .getSecretValue({ SecretId: 'gh/read_token' }, (err, data) => {
+            .getSecretValue({ SecretId: 'gh/ro-user-repo' }, (err, data) => {
                 if (err !== null) {
                     reject(err)
                 } else {
-                    resolve(JSON.parse(data.SecretString).gh_read_token)
+                    let secretData = JSON.parse(data.SecretString);
+                    const readToken = secretData['gh/ro-user-repo'];
+                    resolve(readToken)
                 }
             })
     // Query data on my repos

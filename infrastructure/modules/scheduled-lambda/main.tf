@@ -69,18 +69,18 @@ resource "aws_lambda_function" "func" {
  * An hourly cron is a bit overkill for my productivity.
  * None the less, the code is here.
  */
-//resource "aws_cloudwatch_event_rule" "rule" {
-//  name = "${var.name}-event-rule"
-//  schedule_expression = "${var.schedule_expression}"
-//}
-//resource "aws_cloudwatch_event_target" "target" {
-//  arn = "${aws_lambda_function.func.arn}"
-//  rule = "${aws_cloudwatch_event_rule.rule.name}"
-//}
-//resource "aws_lambda_permission" "cloudwatch_lambda_perm" {
-//  statement_id = "AllowExecutionFromCloudWatch"
-//  principal = "events.amazonaws.com"
-//  action = "lambda:InvokeFunction"
-//  source_arn = "${aws_cloudwatch_event_rule.rule.arn}"
-//  function_name = "${aws_lambda_function.func.function_name}"
-//}
+resource "aws_cloudwatch_event_rule" "rule" {
+  name = "${var.name}-event-rule"
+  schedule_expression = var.schedule_expression
+}
+resource "aws_cloudwatch_event_target" "target" {
+  arn = aws_lambda_function.func.arn
+  rule = aws_cloudwatch_event_rule.rule.name
+}
+resource "aws_lambda_permission" "cloudwatch_lambda_perm" {
+  statement_id = "AllowExecutionFromCloudWatch"
+  principal = "events.amazonaws.com"
+  action = "lambda:InvokeFunction"
+  source_arn = aws_cloudwatch_event_rule.rule.arn
+  function_name = aws_lambda_function.func.function_name
+}
