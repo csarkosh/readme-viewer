@@ -17,5 +17,5 @@ data "aws_acm_certificate" "cert" {
 }
 
 output "acm_cert_arn" {
-  value = "${data.aws_acm_certificate.cert.arn}"
+  value = data.aws_acm_certificate.cert.arn
 }

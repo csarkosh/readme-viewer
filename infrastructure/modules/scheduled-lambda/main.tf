@@ -4,21 +4,21 @@ provider "aws" {
 
 
 variable "name" {
-  type = "string"
+  type = string
 }
 variable "s3_bucket" {
-  type = "string"
+  type = string
 }
 variable "s3_key" {
-  type = "string"
+  type = string
 }
 variable "schedule_expression" {
-  type = "string"
+  type = string
 }
 
 
 resource "aws_iam_role_policy" "policy" {
-  role = "${aws_iam_role.role.id}"
+  role = aws_iam_role.role.id
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -56,12 +56,12 @@ resource "aws_iam_role" "role" {
 EOF
 }
 resource "aws_lambda_function" "func" {
-  function_name = "${var.name}"
+  function_name = var.name
   handler = "exports.handler"
-  role = "${aws_iam_role.role.arn}"
+  role = aws_iam_role.role.arn
   runtime = "nodejs10.x"
-  s3_bucket = "${var.s3_bucket}"
-  s3_key = "${var.s3_key}"
+  s3_bucket = var.s3_bucket
+  s3_key = var.s3_key
   timeout = 60
 }
 
