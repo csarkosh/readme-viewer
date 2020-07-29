@@ -116,8 +116,8 @@ class App extends React.Component {
                         alignContent="center"
                         wrap="nowrap"
                     >
-                        <Grid item>
-                            <Typography className={classes.appBarLogo} variant="h5">readme-viewer.csarko.sh</Typography>
+                        <Grid item style={{ width: '100%' }}>
+                            <Typography className={classes.appBarLogo} variant="h5">Readme Viewer</Typography>
                         </Grid>
                         <Grid className={classes.iconToolbar} container item justify="flex-end">
                             <Grid item>
