@@ -109,14 +109,6 @@ class App extends React.Component {
         const { classes } = this.props
         return (
             <div style={{ marginTop: -4}}>
-                <a href="https://github.com/csarkosh/csarko.sh">
-                    <img width="149" height="149"
-                        src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149"
-                        className={`attachment-full size-full ${classes.forkMeBanner}`}
-                        alt="Fork me on GitHub"
-                        data-recalc-dims="1"
-                    />
-                </a>
                 <AppBar className={classes.appBar} position="sticky">
                     <Grid
                         className={classes.appBarGridContainer}
@@ -126,16 +118,9 @@ class App extends React.Component {
                         wrap="nowrap"
                     >
                         <Grid item>
-                            <Typography className={classes.appBarLogo} variant="h5">csarko.sh</Typography>
+                            <Typography className={classes.appBarLogo} variant="h5">readme-viewer.csarko.sh</Typography>
                         </Grid>
                         <Grid className={classes.iconToolbar} container item justify="flex-end">
-                            <Grid item>
-                                <Tooltip title="Open my Resume">
-                                    <IconButton color="inherit" href="#" aria-label="Resume" style={{marginTop: 2}} onClick={this.handleResumeOpen}>
-                                        <ResumeIcon/>
-                                    </IconButton>
-                                </Tooltip>
-                            </Grid>
                             <Grid item>
                                 <Tooltip title="Go to my GitHub">
                                     <IconButton color="inherit" aria-label="GitHub" href="https://github.com/csarkosh">
