@@ -147,6 +147,7 @@ resource "aws_cloudfront_distribution" "protocol_proxy" {
     }
     max_ttl = 0
     min_ttl = 0
+    default_ttl = 0
     target_origin_id = aws_api_gateway_deployment.deployment.id
     viewer_protocol_policy = "redirect-to-https"
   }
@@ -162,6 +163,7 @@ resource "aws_cloudfront_distribution" "protocol_proxy" {
     }
     max_ttl = 0
     min_ttl = 0
+    default_ttl = 0
     target_origin_id = var.asset_origin_id
     viewer_protocol_policy = "redirect-to-https"
   }
@@ -177,6 +179,7 @@ resource "aws_cloudfront_distribution" "protocol_proxy" {
     }
     max_ttl = 0
     min_ttl = 0
+    default_ttl = 0
     target_origin_id = var.asset_origin_id
     viewer_protocol_policy = "redirect-to-https"
   }

@@ -20,7 +20,7 @@ jobs:
           command: npm run test:ci
       - run:
           name: deploy web assets
-          command: npm run build && aws s3 sync build s3://csarko.sh --exclude data/* --exclude docs/*
+          command: npm run build && aws s3 sync build s3://readme-viewer.csarko.sh --exclude data/* --exclude docs/*
       - run:
           name: deploy "server" lambda
           command: |
@@ -28,8 +28,8 @@ jobs:
             cd lambdas/server/
             npm ci
             zip -r server.zip *
-            aws s3 mv server.zip s3://csarko.sh-lambdas/
-            aws --region us-east-1 lambda update-function-code --function-name csarko-website --s3-bucket csarko.sh-lambdas --s3-key server.zip
+            aws s3 mv server.zip s3://readme-viewer.csarko.sh-lambdas2/
+            aws --region us-east-1 lambda update-function-code --function-name readme-viewer --s3-bucket readme-viewer.csarko.sh-lambdas2 --s3-key server.zip
             cd ../..
       - run:
           name: deploy "cache-gh-data" lambda
@@ -37,6 +37,6 @@ jobs:
             cd lambdas/cache-gh-data
             npm ci
             zip -r cache-gh-data.zip *
-            aws s3 mv cache-gh-data.zip s3://csarko.sh-lambdas/
-            aws --region us-east-1 lambda update-function-code --function-name cache-gh-data --s3-bucket csarko.sh-lambdas --s3-key cache-gh-data.zip
+            aws s3 mv cache-gh-data.zip s3://readme-viewer.csarko.sh-lambdas2/
+            aws --region us-east-1 lambda update-function-code --function-name cache-gh-data --s3-bucket readme-viewer.csarko.sh-lambdas2 --s3-key cache-gh-data.zip
             cd ../..

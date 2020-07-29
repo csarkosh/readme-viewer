@@ -31,7 +31,7 @@ resource "aws_iam_role_policy" "policy" {
     {
       "Effect": "Allow",
       "Action": "s3:*",
-      "Resource": "arn:aws:s3:::csarko.sh/*"
+      "Resource": "arn:aws:s3:::readme-viewer.csarko.sh/*"
     }
   ]
 }
