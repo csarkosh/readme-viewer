@@ -2,7 +2,6 @@ import React from 'react';
 import {AppBar, Grid, IconButton, Tooltip, Typography} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { FaGithub } from 'react-icons/fa';
-import ResumeIcon from "./components/ResumeIcon";
 import ResumeModal from './components/ResumeModal'
 import axios from 'axios'
 import Project from "./components/ProjectButton";
