@@ -1,7 +1,7 @@
-# [Readme Viewer](https://readme-viewer.csarko.sh) &middot; [![CircleCI](https://img.shields.io/circleci/build/github/csarkosh/csarko.sh.svg?label=app%20build)](https://circleci.com/gh/csarkosh/csarko.sh) [![Dockerhub Status](https://img.shields.io/docker/cloud/build/csarko/node_terraform_awscli?label=ci%20image%20build)](https://hub.docker.com/r/csarko/node_terraform_awscli/builds) [![Mozilla Observability](https://img.shields.io/mozilla-observatory/grade/readme-viewer.csarko.sh?label=mozilla%20observatory&publish)](https://observatory.mozilla.org/analyze/readme-viewer.csarko.sh) [![Website Status](https://img.shields.io/website/https/readme-viewer.csarko.sh.svg)](https://readme-viewer.csarko.sh)
+# [Readme Viewer](https://readme-viewer.csarko.sh) &middot; [![CircleCI](https://img.shields.io/circleci/build/github/csarkosh/readme-viewer.svg?label=app%20build)](https://circleci.com/gh/csarkosh/readme-viewer) [![Dockerhub Status](https://img.shields.io/docker/cloud/build/csarko/node_terraform_awscli?label=ci%20image%20build)](https://hub.docker.com/r/csarko/node_terraform_awscli/builds) [![Mozilla Observability](https://img.shields.io/mozilla-observatory/grade/readme-viewer.csarko.sh?label=mozilla%20observatory&publish)](https://observatory.mozilla.org/analyze/readme-viewer.csarko.sh) [![Website Status](https://img.shields.io/website/https/readme-viewer.csarko.sh.svg)](https://readme-viewer.csarko.sh)
 
 The purpose of this project is to demonstrate my 100% serverless architecture used to get an A+ security 
-rating on [Mozilla's Observatory tool](https://observatory.mozilla.org/analyze/csarko.sh).
+rating on [Mozilla's Observatory tool](https://observatory.mozilla.org/analyze/readme-viewer.csarko.sh).
 
 This application functions as a simple readme viewer. It provides a custom, [material design](https://material.io/) web interface for Readme's on 
 projects that I have built and open-sourced projects I've forked. 
