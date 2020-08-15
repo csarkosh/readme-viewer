@@ -10,6 +10,7 @@ import Project from "./components/ProjectButton";
 const styles = () => ({
     appBar: {
         height: 50,
+        padding: 'env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left)',
     },
     appBarLogo: {
         margin: '8px 0 0 8px',
@@ -43,12 +44,13 @@ const styles = () => ({
         '& > div': {
             backgroundColor: 'black',
             boxShadow: '0 2px 2px',
+            padding: '0 max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left))',
         },
         '& > div > div': {
             height: 'calc(50vh - 50px)',
             margin: '0 auto',
             overflow: 'auto',
-            width: 'calc(100vw - 32px)',
+            width: '100%',
             '-webkit-overflow-scrolling': 'touch',
         },
         '& iframe': {
@@ -62,7 +64,7 @@ const styles = () => ({
         height: 'calc(50vh - 50px)',
         overflowX: 'hidden',
         overflowY: 'auto',
-        paddingTop: 8,
+        padding: '8px env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)',
         '& button': {
             margin: 8,
             verticalAlign: 'top'
